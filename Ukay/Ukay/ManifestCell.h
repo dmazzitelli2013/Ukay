@@ -1,13 +1,13 @@
 //
-//  ViewController.h
+//  ManifestCell.h
 //  Ukay
 //
-//  Created by David Mazzitelli on 4/20/13.
+//  Created by David Mazzitelli on 4/21/13.
 //  Copyright (c) 2013 David Mazzitelli. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ManifestCell : UITableViewCell
 
 @end
