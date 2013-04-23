@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FormViewController : UIViewController
+@interface FormViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
 @end
