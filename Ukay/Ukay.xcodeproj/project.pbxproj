@@ -15,6 +15,7 @@
 		41DB66D51726257800F7FFEB /* check-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D11726257800F7FFEB /* check-icon@2x.png */; };
 		41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D21726257800F7FFEB /* unckeck-icon.png */; };
 		41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */; };
+		41E014021728AD3700058041 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E014011728AD3700058041 /* BaseViewController.m */; };
 		41E3B33E17238A3300CF7E30 /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E3B33817238A3300CF7E30 /* buttonBackground.png */; };
 		41E3B33F17238A3300CF7E30 /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E3B33917238A3300CF7E30 /* buttonBackground@2x.png */; };
 		41E3B34017238A3300CF7E30 /* buttonBackgroundPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E3B33A17238A3300CF7E30 /* buttonBackgroundPressed.png */; };
@@ -52,6 +53,8 @@
 		41DB66D11726257800F7FFEB /* check-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon@2x.png"; sourceTree = "<group>"; };
 		41DB66D21726257800F7FFEB /* unckeck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon.png"; sourceTree = "<group>"; };
 		41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon@2x.png"; sourceTree = "<group>"; };
+		41E014001728AD3700058041 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		41E014011728AD3700058041 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		41E3B33817238A3300CF7E30 /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
 		41E3B33917238A3300CF7E30 /* buttonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackground@2x.png"; sourceTree = "<group>"; };
 		41E3B33A17238A3300CF7E30 /* buttonBackgroundPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackgroundPressed.png; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		41226C7D172380890034A050 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				41E013FF1728AD2300058041 /* Base */,
 				41226C7E1723809A0034A050 /* Login */,
 				41E3B34417238B7E00CF7E30 /* Manifest */,
 				41E3B3511723917800CF7E30 /* Form */,
@@ -140,6 +144,15 @@
 				41E3B33D17238A3300CF7E30 /* loginBackground@2x.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		41E013FF1728AD2300058041 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				41E014001728AD3700058041 /* BaseViewController.h */,
+				41E014011728AD3700058041 /* BaseViewController.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		41E3B34417238B7E00CF7E30 /* Manifest */ = {
@@ -324,6 +337,7 @@
 				41E3B35E1723A60800CF7E30 /* Item.m in Sources */,
 				41E3B3611723A73C00CF7E30 /* Form.m in Sources */,
 				41DB66CE1726191500F7FFEB /* DatePickerViewController.m in Sources */,
+				41E014021728AD3700058041 /* BaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

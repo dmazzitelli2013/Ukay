@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface FormViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
+@interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
 @end
