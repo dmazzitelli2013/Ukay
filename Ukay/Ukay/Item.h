@@ -10,7 +10,7 @@
 
 @interface Item : NSObject
 
-@property (nonatomic, assign) NSString *quantity;
+@property (nonatomic, retain) NSString *quantity;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *cube;
 @property (nonatomic, retain) NSString *charges;

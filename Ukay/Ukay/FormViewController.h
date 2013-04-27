@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "Form.h"
 
 @interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
+
+@property (nonatomic, retain) Form *form;
 
 @end

@@ -9,10 +9,13 @@
 #import "ManifestViewController.h"
 #import "ManifestCell.h"
 #import "FormViewController.h"
+#import "FormRepository.h"
+#import "Form.h"
 
 @interface ManifestViewController ()
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
+@property (nonatomic, retain) NSArray *formsData;
 
 @end
 
@@ -28,7 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    FormRepository *repository = [[FormRepository alloc] init];
+    self.formsData = [repository getAllForms];
+    [repository release];
 }
 
 - (void)viewDidUnload
@@ -49,6 +55,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FormViewController *formViewController = [[FormViewController alloc] initWithNibName:@"FormViewController" bundle:nil];
+    Form *form = [self.formsData objectAtIndex:indexPath.row];
+    formViewController.form = form;
+    
     [self presentViewController:formViewController animated:YES completion:nil];
     [formViewController release];
     
@@ -59,7 +68,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.formsData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,6 +79,8 @@
     if(!cell) {
 		cell = [[[NSBundle mainBundle] loadNibNamed:@"ManifestCell" owner:self options:nil] objectAtIndex:0];
 	}
+    
+    //Form *form = [self.formsData objectAtIndex:indexPath.row];
     
 	return cell;
 }

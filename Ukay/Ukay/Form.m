@@ -27,4 +27,18 @@
     [super dealloc];
 }
 
+- (void)addItem:(Item *)item
+{
+    if(!self.items) {
+        self.items = [NSMutableArray array];
+    }
+    
+    [self.items addObject:item];
+}
+
+- (void)removeItem:(Item *)item
+{
+    [self.items removeObject:item];
+}
+
 @end

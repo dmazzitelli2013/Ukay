@@ -52,51 +52,6 @@
 
 @implementation FormViewController
 
-- (Form *)createFakeForm
-{
-    Form *form = [[[Form alloc] init] autorelease];
-    
-    form.billTo = @"DIVA FURNITURE 8801 BEVERLY BLVD LOS ANGELES, CA 90048";
-    
-    form.payment = @"BILL";
-    form.invoice = @"324174";
-    form.reference = @"SMPRH0062231";
-    form.type = @"DELIVERY";
-    
-    form.consignee = @"DIVA FURNITURE 8801 BEVERLY BLVD LOS ANGELES, CA 90048 (310) 278-3191 (310) 278-3292";
-    form.shipper = @"DIVA NEW WAREHOUSE 13625 GRAMERY PL EL SEGUNDO, CA 90245";
-    
-    form.date = @"02-19-13";
-    form.customer = @"";
-    form.value = @"";
-    
-    Item *item1 = [[Item alloc] init];
-    item1.quantity = @"1";
-    item1.description = @"POSTED BED";
-    item1.cube = @"10.34";
-    item1.charges = @"";
-    
-    Item *item2 = [[Item alloc] init];
-    item2.quantity = @"2";
-    item2.description = @"PRODUCT A";
-    item2.cube = @"25.55";
-    item2.charges = @"39.99";
-    
-    Item *item3 = [[Item alloc] init];
-    item3.quantity = @"1";
-    item3.description = @"PRODUCT B";
-    item3.cube = @"100.00";
-    item3.charges = @"50.00";
-    
-    form.items = [NSArray arrayWithObjects:item1, item2, item3, nil];
-    
-    [item1 release];
-    [item2 release];
-    [item3 release];
-    
-    return form;
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -125,6 +80,10 @@
     [_textBoxesOffsets release];
     [_checkButtonImages release];
     
+    if(_form) {
+        [_form release];
+    }
+    
     if(_popover) {
         [_popover release];
     }
@@ -136,25 +95,27 @@
 {
     [super viewDidLoad];
     
-    Form *form = [self createFakeForm];
+    if(!self.form) {
+        return;
+    }
     
-    self.billToTextView.text = form.billTo;
-    self.invLabel.text = form.invoice;
-    self.refLabel.text = form.reference;
-    self.typeLabel.text = form.type;
-    self.paymentLabel.text = form.payment;
-    self.consigneeTextView.text = form.consignee;
-    self.shipperTextView.text = form.shipper;
-    self.dateLabel.text = form.date;
-    self.customerLabel.text = form.customer;
-    self.valueLabel.text = form.value;
+    self.billToTextView.text = self.form.billTo;
+    self.invLabel.text = self.form.invoice;
+    self.refLabel.text = self.form.reference;
+    self.typeLabel.text = self.form.type;
+    self.paymentLabel.text = self.form.payment;
+    self.consigneeTextView.text = self.form.consignee;
+    self.shipperTextView.text = self.form.shipper;
+    self.dateLabel.text = self.form.date;
+    self.customerLabel.text = self.form.customer;
+    self.valueLabel.text = self.form.value;
     
     NSMutableString *quantities = [NSMutableString string];
     NSMutableString *descriptions = [NSMutableString string];
     NSMutableString *cubes = [NSMutableString string];
     NSMutableString *charges = [NSMutableString string];
     
-    for(Item *item in form.items) {
+    for(Item *item in self.form.items) {
         [quantities appendFormat:@"%@\n", item.quantity];
         [descriptions appendFormat:@"%@\n", item.description];
         [cubes appendFormat:@"%@\n", item.cube];

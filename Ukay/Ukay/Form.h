@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Item.h"
 
 @interface Form : NSObject
 
@@ -22,6 +23,9 @@
 @property (nonatomic, retain) NSString *customer;
 @property (nonatomic, retain) NSString *value;
 
-@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) NSMutableArray *items;
+
+- (void)addItem:(Item *)item;
+- (void)removeItem:(Item *)item;
 
 @end
