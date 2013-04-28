@@ -12,6 +12,7 @@
 
 @interface ManifestCell ()
 
+@property (nonatomic, retain) IBOutlet UIView *grayBackgroundView;
 @property (nonatomic, retain) IBOutlet UILabel *customerLabel;
 @property (nonatomic, retain) IBOutlet UILabel *formNumberLabel;
 @property (nonatomic, retain) IBOutlet UILabel *invoiceNumberLabel;
@@ -39,6 +40,7 @@
         [_form release];
     }
     
+    [_grayBackgroundView release];
     [_customerLabel release];
     [_formNumberLabel release];
     [_invoiceNumberLabel release];
@@ -85,6 +87,10 @@
     
     self.quantityTextView.text = quantityString;
     self.descriptionTextView.text = descriptionString;
+    
+    if(self.form.formState == Completed) {
+        self.grayBackgroundView.hidden = NO;
+    }
 }
 
 @end

@@ -232,9 +232,16 @@
 
 #pragma mark - IBActions methods
 
-- (IBAction)back:(id)sender
+- (IBAction)optionsButtonPressed:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Complete Record", @"Back", nil];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
 }
 
 - (IBAction)checkButtonPressed:(id)sender
@@ -321,6 +328,22 @@
     [_lastTouchedDateField setText:date];
     
     return YES;
+}
+
+#pragma mark - UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            self.form.formState = Completed;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
