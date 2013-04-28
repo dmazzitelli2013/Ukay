@@ -11,5 +11,6 @@
 @interface FormRepository : NSObject
 
 - (NSArray *)getAllForms;
+- (NSArray *)getAllFormGroupsForForms:(NSArray *)forms;
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE85172CCD39001A0BE3 /* FormGroup.m */; };
+		413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */; };
+		413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */; };
 		41DB66C917260BAC00F7FFEB /* form.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66C717260BAC00F7FFEB /* form.png */; };
 		41DB66CA17260BAC00F7FFEB /* form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66C817260BAC00F7FFEB /* form@2x.png */; };
 		41DB66CE1726191500F7FFEB /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DB66CC1726191500F7FFEB /* DatePickerViewController.m */; };
@@ -47,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		413EFE84172CCD39001A0BE3 /* FormGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormGroup.h; sourceTree = "<group>"; };
+		413EFE85172CCD39001A0BE3 /* FormGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormGroup.m; sourceTree = "<group>"; };
+		413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManifestCellHeader.xib; sourceTree = "<group>"; };
+		413EFE89172CD862001A0BE3 /* ManifestCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestCellHeader.h; sourceTree = "<group>"; };
+		413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestCellHeader.m; sourceTree = "<group>"; };
 		41DB66C717260BAC00F7FFEB /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
 		41DB66C817260BAC00F7FFEB /* form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form@2x.png"; sourceTree = "<group>"; };
 		41DB66CB1726191500F7FFEB /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
@@ -191,6 +199,9 @@
 				41E3B34A17238ECD00CF7E30 /* ManifestCell.h */,
 				41E3B34B17238ECD00CF7E30 /* ManifestCell.m */,
 				41E3B34F17238EFA00CF7E30 /* ManifestCell.xib */,
+				413EFE89172CD862001A0BE3 /* ManifestCellHeader.h */,
+				413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */,
+				413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */,
 			);
 			name = Manifest;
 			sourceTree = "<group>";
@@ -215,6 +226,8 @@
 				41E3B35D1723A60800CF7E30 /* Item.m */,
 				41E3B35F1723A73C00CF7E30 /* Form.h */,
 				41E3B3601723A73C00CF7E30 /* Form.m */,
+				413EFE84172CCD39001A0BE3 /* FormGroup.h */,
+				413EFE85172CCD39001A0BE3 /* FormGroup.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -348,6 +361,7 @@
 				41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */,
 				41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */,
 				41DFAD86172B8999001C8E58 /* example.csv in Resources */,
+				413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +384,8 @@
 				41DB66CE1726191500F7FFEB /* DatePickerViewController.m in Sources */,
 				41E014021728AD3700058041 /* BaseViewController.m in Sources */,
 				41DFAD7E172B84E0001C8E58 /* FormRepository.m in Sources */,
+				413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */,
+				413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

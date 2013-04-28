@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Form.h"
 
 @interface ManifestCell : UITableViewCell
+
+@property (nonatomic, retain) Form *form;
+
+- (void)fillManifestCell;
 
 @end

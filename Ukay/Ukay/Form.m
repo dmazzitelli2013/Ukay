@@ -12,6 +12,9 @@
 
 - (void)dealloc
 {
+    [_driver release];
+    [_helper release];
+    [_routeName release];
     [_billTo release];
     [_invoice release];
     [_reference release];

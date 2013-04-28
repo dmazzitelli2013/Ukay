@@ -8,14 +8,16 @@
 
 #import "ManifestViewController.h"
 #import "ManifestCell.h"
+#import "ManifestCellHeader.h"
 #import "FormViewController.h"
 #import "FormRepository.h"
 #import "Form.h"
+#import "FormGroup.h"
 
 @interface ManifestViewController ()
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
-@property (nonatomic, retain) NSArray *formsData;
+@property (nonatomic, retain) NSArray *formsGroups;
 
 @end
 
@@ -25,6 +27,10 @@
 {
     [_table release];
     
+    if(_formsGroups) {
+        [_formsGroups release];
+    }
+    
     [super dealloc];
 }
 
@@ -33,7 +39,8 @@
     [super viewDidLoad];
     
     FormRepository *repository = [[FormRepository alloc] init];
-    self.formsData = [repository getAllForms];
+    NSArray *forms = [repository getAllForms];
+    self.formsGroups = [repository getAllFormGroupsForForms:forms];
     [repository release];
 }
 
@@ -55,7 +62,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FormViewController *formViewController = [[FormViewController alloc] initWithNibName:@"FormViewController" bundle:nil];
-    Form *form = [self.formsData objectAtIndex:indexPath.row];
+    FormGroup *formGroup = [self.formsGroups objectAtIndex:indexPath.section];
+    Form *form = [formGroup getFormAtIndex:indexPath.row];
     formViewController.form = form;
     
     [self presentViewController:formViewController animated:YES completion:nil];
@@ -64,11 +72,31 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 75;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ManifestCellHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"ManifestCellHeader" owner:self options:nil] objectAtIndex:0];
+    header.formGroup = [self.formsGroups objectAtIndex:section];
+    [header fillManifestHeader];
+    
+    return header;
+}
+
 #pragma mark - UITableViewDataSource methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.formsGroups count];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.formsData count];
+    FormGroup *formGroup = [self.formsGroups objectAtIndex:section];
+    return [formGroup getFormsCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,7 +108,10 @@
 		cell = [[[NSBundle mainBundle] loadNibNamed:@"ManifestCell" owner:self options:nil] objectAtIndex:0];
 	}
     
-    //Form *form = [self.formsData objectAtIndex:indexPath.row];
+    FormGroup *formGroup = [self.formsGroups objectAtIndex:indexPath.section];
+    Form *form = [formGroup getFormAtIndex:indexPath.row];
+    cell.form = form;
+    [cell fillManifestCell];
     
 	return cell;
 }

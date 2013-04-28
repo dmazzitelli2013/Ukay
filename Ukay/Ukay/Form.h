@@ -9,7 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "Item.h"
 
+typedef enum {
+    New,
+    Completed
+} FormState;
+
 @interface Form : NSObject
+
+@property (nonatomic, assign) FormState formState;
+
+@property (nonatomic, retain) NSString *driver;
+@property (nonatomic, retain) NSString *helper;
+@property (nonatomic, retain) NSString *routeName;
 
 @property (nonatomic, retain) NSString *billTo;
 @property (nonatomic, retain) NSString *invoice;
@@ -24,6 +35,8 @@
 @property (nonatomic, retain) NSString *value;
 
 @property (nonatomic, retain) NSMutableArray *items;
+
+@property (nonatomic, assign) NSInteger formNumber;
 
 - (void)addItem:(Item *)item;
 - (void)removeItem:(Item *)item;

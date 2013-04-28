@@ -10,6 +10,7 @@
 #import "CHCSVParser.h"
 #import "Form.h"
 #import "Item.h"
+#import "FormGroup.h"
 
 @implementation FormRepository
 
@@ -66,6 +67,9 @@
 {
     Form *form = [[[Form alloc] init] autorelease];
     
+    form.driver = [formComponents objectAtIndex:0];
+    form.helper = [formComponents objectAtIndex:1];
+    form.routeName = [formComponents objectAtIndex:2];
     form.billTo = [formComponents objectAtIndex:8];
     form.payment = [formComponents objectAtIndex:14];
     form.invoice = [formComponents objectAtIndex:4];
@@ -92,6 +96,54 @@
     [form addItem:item];
     
     [item release];
+}
+
+- (NSArray *)getAllFormGroupsForForms:(NSArray *)forms
+{
+    NSMutableArray *formGroups = [NSMutableArray array];
+    NSInteger formNumber = 1;
+    
+    for(Form *form in forms) {
+        
+        form.formNumber = formNumber;
+        formNumber++;
+        
+        if([formGroups count] == 0) {
+            
+            FormGroup *formGroup = [self createFormGroup:form];
+            [formGroup addForm:form];
+            [formGroups addObject:formGroup];
+            
+        } else {
+            
+            BOOL belongs = NO;
+            int i = 0;
+            while(i < [formGroups count] && !belongs) {
+                FormGroup *formGroup = [formGroups objectAtIndex:i];
+                if([formGroup belongsToTheGroup:form]) {
+                    [formGroup addForm:form];
+                    belongs = YES;
+                }
+                
+                i++;
+            }
+            
+            if(!belongs) {
+                FormGroup *formGroup = [self createFormGroup:form];
+                [formGroup addForm:form];
+                [formGroups addObject:formGroup];
+            }
+            
+        }
+        
+    }
+    
+    return formGroups;
+}
+
+- (FormGroup *)createFormGroup:(Form *)form
+{
+    return [[[FormGroup alloc] initWithForm:form] autorelease];
 }
 
 @end
