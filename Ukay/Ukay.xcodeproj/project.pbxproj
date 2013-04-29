@@ -47,6 +47,8 @@
 		41E5908E17234BB20067E971 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E5908D17234BB20067E971 /* Default-568h@2x.png */; };
 		41E5909117234BB20067E971 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E5909017234BB20067E971 /* LoginViewController.m */; };
 		41E5909417234BB20067E971 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41E5909217234BB20067E971 /* LoginViewController.xib */; };
+		41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E5FE0C172D953100E197EB /* PDFGenerator.m */; };
+		41E5FE0F172D959200E197EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5FE0E172D959200E197EB /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,9 @@
 		41E5908F17234BB20067E971 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		41E5909017234BB20067E971 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		41E5909317234BB20067E971 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		41E5FE0B172D953100E197EB /* PDFGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFGenerator.h; sourceTree = "<group>"; };
+		41E5FE0C172D953100E197EB /* PDFGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFGenerator.m; sourceTree = "<group>"; };
+		41E5FE0E172D959200E197EB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E5FE0F172D959200E197EB /* QuartzCore.framework in Frameworks */,
 				41E5907817234BB20067E971 /* UIKit.framework in Frameworks */,
 				41E5907A17234BB20067E971 /* Foundation.framework in Frameworks */,
 				41E5907C17234BB20067E971 /* CoreGraphics.framework in Frameworks */,
@@ -177,6 +183,8 @@
 			children = (
 				41DFAD8A172B9B28001C8E58 /* CHCSVParser.h */,
 				41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */,
+				41E5FE0B172D953100E197EB /* PDFGenerator.h */,
+				41E5FE0C172D953100E197EB /* PDFGenerator.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 		41E5907617234BB20067E971 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41E5FE0E172D959200E197EB /* QuartzCore.framework */,
 				41E5907717234BB20067E971 /* UIKit.framework */,
 				41E5907917234BB20067E971 /* Foundation.framework */,
 				41E5907B17234BB20067E971 /* CoreGraphics.framework */,
@@ -386,6 +395,7 @@
 				41DFAD7E172B84E0001C8E58 /* FormRepository.m in Sources */,
 				413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */,
 				413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */,
+				41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

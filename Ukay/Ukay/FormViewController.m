@@ -10,6 +10,7 @@
 #import "Form.h"
 #import "Item.h"
 #import "DatePickerViewController.h"
+#import "PDFGenerator.h"
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 
@@ -48,6 +49,8 @@
 
 @property (nonatomic, retain) UIPopoverController *popover;
 
+@property (nonatomic, retain) IBOutlet UIButton *optionsButton;
+
 @end
 
 @implementation FormViewController
@@ -79,6 +82,7 @@
     
     [_textBoxesOffsets release];
     [_checkButtonImages release];
+    [_optionsButton release];
     
     if(_form) {
         [_form release];
@@ -176,6 +180,7 @@
     self.checkButtonFive = nil;
     self.checkButtonSix = nil;
     self.popover = nil;
+    self.optionsButton = nil;
     
     [super viewDidUnload];
 }
@@ -238,7 +243,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Complete Record", @"Back", nil];
+                                                    otherButtonTitles:@"Complete Record", @"Generate PDF", @"Back", nil];
     
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -337,13 +342,22 @@
     switch (buttonIndex) {
         case 0:
             self.form.formState = Completed;
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+            
+        case 1:
+            self.optionsButton.hidden = YES;
+            [PDFGenerator createPDFfromUIView:self.view saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
+            self.optionsButton.hidden = NO;            
+            break;
+            
+        case 2:
+            [self dismissViewControllerAnimated:YES completion:nil];
             break;
             
         default:
             break;
     }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
