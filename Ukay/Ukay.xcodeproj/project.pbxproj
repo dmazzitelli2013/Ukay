@@ -18,6 +18,9 @@
 		41DB66D51726257800F7FFEB /* check-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D11726257800F7FFEB /* check-icon@2x.png */; };
 		41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D21726257800F7FFEB /* unckeck-icon.png */; };
 		41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */; };
+		41DCBD00172F515F00C0C2DB /* Squiggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCBCFE172F515F00C0C2DB /* Squiggle.m */; };
+		41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41DCBD01172F523200C0C2DB /* SignatureView.xib */; };
+		41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCBD04172F528D00C0C2DB /* SignatureView.m */; };
 		41DFAD7E172B84E0001C8E58 /* FormRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DFAD7D172B84E0001C8E58 /* FormRepository.m */; };
 		41DFAD86172B8999001C8E58 /* example.csv in Resources */ = {isa = PBXBuildFile; fileRef = 41DFAD85172B8999001C8E58 /* example.csv */; };
 		41DFAD8C172B9B85001C8E58 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */; };
@@ -66,6 +69,11 @@
 		41DB66D11726257800F7FFEB /* check-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon@2x.png"; sourceTree = "<group>"; };
 		41DB66D21726257800F7FFEB /* unckeck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon.png"; sourceTree = "<group>"; };
 		41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon@2x.png"; sourceTree = "<group>"; };
+		41DCBCFE172F515F00C0C2DB /* Squiggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Squiggle.m; sourceTree = "<group>"; };
+		41DCBCFF172F515F00C0C2DB /* Squiggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Squiggle.h; sourceTree = "<group>"; };
+		41DCBD01172F523200C0C2DB /* SignatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
+		41DCBD03172F528D00C0C2DB /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
+		41DCBD04172F528D00C0C2DB /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
 		41DFAD7C172B84E0001C8E58 /* FormRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormRepository.h; sourceTree = "<group>"; };
 		41DFAD7D172B84E0001C8E58 /* FormRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormRepository.m; sourceTree = "<group>"; };
 		41DFAD85172B8999001C8E58 /* example.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.csv; sourceTree = "<group>"; };
@@ -181,6 +189,8 @@
 		41DFAD7F172B8762001C8E58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				41DCBCFF172F515F00C0C2DB /* Squiggle.h */,
+				41DCBCFE172F515F00C0C2DB /* Squiggle.m */,
 				41DFAD8A172B9B28001C8E58 /* CHCSVParser.h */,
 				41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */,
 				41E5FE0B172D953100E197EB /* PDFGenerator.h */,
@@ -223,6 +233,9 @@
 				41DB66CB1726191500F7FFEB /* DatePickerViewController.h */,
 				41DB66CC1726191500F7FFEB /* DatePickerViewController.m */,
 				41DB66CD1726191500F7FFEB /* DatePickerViewController.xib */,
+				41DCBD03172F528D00C0C2DB /* SignatureView.h */,
+				41DCBD04172F528D00C0C2DB /* SignatureView.m */,
+				41DCBD01172F523200C0C2DB /* SignatureView.xib */,
 			);
 			name = Form;
 			sourceTree = "<group>";
@@ -371,6 +384,7 @@
 				41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */,
 				41DFAD86172B8999001C8E58 /* example.csv in Resources */,
 				413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */,
+				41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +410,8 @@
 				413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */,
 				413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */,
 				41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */,
+				41DCBD00172F515F00C0C2DB /* Squiggle.m in Sources */,
+				41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import "Item.h"
 #import "DatePickerViewController.h"
 #import "PDFGenerator.h"
+#import "SignatureView.h"
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 
@@ -258,6 +259,12 @@
     } else {
         [button setImage:[_checkButtonImages objectForKey:@"check"] forState:UIControlStateNormal];
     }
+}
+
+- (IBAction)signatureButtonPressed:(id)sender
+{
+    SignatureView *signatureView = [[[NSBundle mainBundle] loadNibNamed:@"SignatureView" owner:self options:nil] objectAtIndex:0];
+    [signatureView addSlowInView:self.view];
 }
 
 #pragma mark - UITextViewDelegate methods
