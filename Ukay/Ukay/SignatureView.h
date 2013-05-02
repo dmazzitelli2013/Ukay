@@ -10,10 +10,8 @@
 
 @interface SignatureView : UIView
 
+@property (nonatomic, retain) UIView *signatureTargetView;
+
 - (void)addSlowInView:(UIView *)view;
-
-@end
-
-@interface SignatureViewPanel : UIView
 
 @end

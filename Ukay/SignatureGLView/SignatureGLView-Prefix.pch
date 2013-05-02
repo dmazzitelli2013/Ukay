@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SignatureGLView' target in the 'SignatureGLView' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

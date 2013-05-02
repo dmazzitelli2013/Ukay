@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SignatureGLView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Ukay.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>41312FB71731FD3D0007A6C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>41E5907317234BB20067E971</key>
 		<dict>
 			<key>primary</key>

@@ -12,6 +12,7 @@
 #import "DatePickerViewController.h"
 #import "PDFGenerator.h"
 #import "SignatureView.h"
+#import "NICSignatureView.h"
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 
@@ -20,6 +21,7 @@
     UITextField *_lastTouchedTextField;
     UITextField *_lastTouchedDateField;
     NSMutableDictionary *_checkButtonImages;
+    NSMutableDictionary *_signatureViews;
     BOOL _keyboardShowing;
 }
 
@@ -84,6 +86,7 @@
     [_textBoxesOffsets release];
     [_checkButtonImages release];
     [_optionsButton release];
+    [_signatureViews release];
     
     if(_form) {
         [_form release];
@@ -156,6 +159,8 @@
     [self.checkButtonFour   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
     [self.checkButtonFive   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
     [self.checkButtonSix    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    
+    _signatureViews = [[NSMutableDictionary alloc] init];
 }
 
 - (void)viewDidUnload
@@ -263,7 +268,14 @@
 
 - (IBAction)signatureButtonPressed:(id)sender
 {
-    SignatureView *signatureView = [[[NSBundle mainBundle] loadNibNamed:@"SignatureView" owner:self options:nil] objectAtIndex:0];
+    SignatureView *signatureView = [_signatureViews objectForKey:[sender description]];
+
+    if(!signatureView) {
+        signatureView = [[[NSBundle mainBundle] loadNibNamed:@"SignatureView" owner:self options:nil] objectAtIndex:0];
+        signatureView.signatureTargetView = sender;
+        [_signatureViews setObject:signatureView forKey:[sender description]];
+    }
+
     [signatureView addSlowInView:self.view];
 }
 

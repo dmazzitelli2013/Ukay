@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41312FB11731FB8C0007A6C7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41312FB01731FB8C0007A6C7 /* GLKit.framework */; };
+		41312FB31731FBAA0007A6C7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41312FB21731FBAA0007A6C7 /* OpenGLES.framework */; };
+		41312FB91731FD3D0007A6C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5907917234BB20067E971 /* Foundation.framework */; };
+		41312FBE1731FD3D0007A6C7 /* SignatureGLView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 41312FBD1731FD3D0007A6C7 /* SignatureGLView.h */; };
+		41312FC01731FD3D0007A6C7 /* SignatureGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41312FBF1731FD3D0007A6C7 /* SignatureGLView.m */; };
+		41312FC61731FD660007A6C7 /* NICSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41312FC51731FD660007A6C7 /* NICSignatureView.m */; };
+		41312FC71731FD7F0007A6C7 /* libSignatureGLView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41312FB81731FD3D0007A6C7 /* libSignatureGLView.a */; };
 		413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE85172CCD39001A0BE3 /* FormGroup.m */; };
 		413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */; };
 		413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */; };
@@ -18,7 +25,6 @@
 		41DB66D51726257800F7FFEB /* check-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D11726257800F7FFEB /* check-icon@2x.png */; };
 		41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D21726257800F7FFEB /* unckeck-icon.png */; };
 		41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */; };
-		41DCBD00172F515F00C0C2DB /* Squiggle.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCBCFE172F515F00C0C2DB /* Squiggle.m */; };
 		41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41DCBD01172F523200C0C2DB /* SignatureView.xib */; };
 		41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCBD04172F528D00C0C2DB /* SignatureView.m */; };
 		41DFAD7E172B84E0001C8E58 /* FormRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DFAD7D172B84E0001C8E58 /* FormRepository.m */; };
@@ -54,7 +60,28 @@
 		41E5FE0F172D959200E197EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5FE0E172D959200E197EB /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		41312FB61731FD3D0007A6C7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				41312FBE1731FD3D0007A6C7 /* SignatureGLView.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		41312FB01731FB8C0007A6C7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		41312FB21731FBAA0007A6C7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		41312FB81731FD3D0007A6C7 /* libSignatureGLView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSignatureGLView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		41312FBC1731FD3D0007A6C7 /* SignatureGLView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SignatureGLView-Prefix.pch"; sourceTree = "<group>"; };
+		41312FBD1731FD3D0007A6C7 /* SignatureGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignatureGLView.h; sourceTree = "<group>"; };
+		41312FBF1731FD3D0007A6C7 /* SignatureGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignatureGLView.m; sourceTree = "<group>"; };
+		41312FC41731FD660007A6C7 /* NICSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NICSignatureView.h; sourceTree = "<group>"; };
+		41312FC51731FD660007A6C7 /* NICSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NICSignatureView.m; sourceTree = "<group>"; };
 		413EFE84172CCD39001A0BE3 /* FormGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormGroup.h; sourceTree = "<group>"; };
 		413EFE85172CCD39001A0BE3 /* FormGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormGroup.m; sourceTree = "<group>"; };
 		413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManifestCellHeader.xib; sourceTree = "<group>"; };
@@ -69,8 +96,6 @@
 		41DB66D11726257800F7FFEB /* check-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon@2x.png"; sourceTree = "<group>"; };
 		41DB66D21726257800F7FFEB /* unckeck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon.png"; sourceTree = "<group>"; };
 		41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon@2x.png"; sourceTree = "<group>"; };
-		41DCBCFE172F515F00C0C2DB /* Squiggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Squiggle.m; sourceTree = "<group>"; };
-		41DCBCFF172F515F00C0C2DB /* Squiggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Squiggle.h; sourceTree = "<group>"; };
 		41DCBD01172F523200C0C2DB /* SignatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		41DCBD03172F528D00C0C2DB /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
 		41DCBD04172F528D00C0C2DB /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
@@ -122,10 +147,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		41312FB51731FD3D0007A6C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41312FB91731FD3D0007A6C7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		41E5907117234BB20067E971 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41312FC71731FD7F0007A6C7 /* libSignatureGLView.a in Frameworks */,
+				41312FB31731FBAA0007A6C7 /* OpenGLES.framework in Frameworks */,
+				41312FB11731FB8C0007A6C7 /* GLKit.framework in Frameworks */,
 				41E5FE0F172D959200E197EB /* QuartzCore.framework in Frameworks */,
 				41E5907817234BB20067E971 /* UIKit.framework in Frameworks */,
 				41E5907A17234BB20067E971 /* Foundation.framework in Frameworks */,
@@ -177,6 +213,24 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		41312FBA1731FD3D0007A6C7 /* SignatureGLView */ = {
+			isa = PBXGroup;
+			children = (
+				41312FBD1731FD3D0007A6C7 /* SignatureGLView.h */,
+				41312FBF1731FD3D0007A6C7 /* SignatureGLView.m */,
+				41312FBB1731FD3D0007A6C7 /* Supporting Files */,
+			);
+			path = SignatureGLView;
+			sourceTree = "<group>";
+		};
+		41312FBB1731FD3D0007A6C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41312FBC1731FD3D0007A6C7 /* SignatureGLView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		41DFAD7B172B84CB001C8E58 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,8 +243,8 @@
 		41DFAD7F172B8762001C8E58 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				41DCBCFF172F515F00C0C2DB /* Squiggle.h */,
-				41DCBCFE172F515F00C0C2DB /* Squiggle.m */,
+				41312FC41731FD660007A6C7 /* NICSignatureView.h */,
+				41312FC51731FD660007A6C7 /* NICSignatureView.m */,
 				41DFAD8A172B9B28001C8E58 /* CHCSVParser.h */,
 				41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */,
 				41E5FE0B172D953100E197EB /* PDFGenerator.h */,
@@ -257,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				41E5907D17234BB20067E971 /* Ukay */,
+				41312FBA1731FD3D0007A6C7 /* SignatureGLView */,
 				41E5907617234BB20067E971 /* Frameworks */,
 				41E5907517234BB20067E971 /* Products */,
 			);
@@ -266,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				41E5907417234BB20067E971 /* Ukay.app */,
+				41312FB81731FD3D0007A6C7 /* libSignatureGLView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,6 +329,8 @@
 		41E5907617234BB20067E971 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41312FB21731FBAA0007A6C7 /* OpenGLES.framework */,
+				41312FB01731FB8C0007A6C7 /* GLKit.framework */,
 				41E5FE0E172D959200E197EB /* QuartzCore.framework */,
 				41E5907717234BB20067E971 /* UIKit.framework */,
 				41E5907917234BB20067E971 /* Foundation.framework */,
@@ -313,6 +371,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		41312FB71731FD3D0007A6C7 /* SignatureGLView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41312FC11731FD3D0007A6C7 /* Build configuration list for PBXNativeTarget "SignatureGLView" */;
+			buildPhases = (
+				41312FB41731FD3D0007A6C7 /* Sources */,
+				41312FB51731FD3D0007A6C7 /* Frameworks */,
+				41312FB61731FD3D0007A6C7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SignatureGLView;
+			productName = SignatureGLView;
+			productReference = 41312FB81731FD3D0007A6C7 /* libSignatureGLView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		41E5907317234BB20067E971 /* Ukay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41E5909717234BB20067E971 /* Build configuration list for PBXNativeTarget "Ukay" */;
@@ -352,6 +427,7 @@
 			projectRoot = "";
 			targets = (
 				41E5907317234BB20067E971 /* Ukay */,
+				41312FB71731FD3D0007A6C7 /* SignatureGLView */,
 			);
 		};
 /* End PBXProject section */
@@ -391,6 +467,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		41312FB41731FD3D0007A6C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41312FC01731FD3D0007A6C7 /* SignatureGLView.m in Sources */,
+				41312FC61731FD660007A6C7 /* NICSignatureView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		41E5907017234BB20067E971 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,7 +495,6 @@
 				413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */,
 				413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */,
 				41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */,
-				41DCBD00172F515F00C0C2DB /* Squiggle.m in Sources */,
 				41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +521,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		41312FC21731FD3D0007A6C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/SignatureGLView.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SignatureGLView/SignatureGLView-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		41312FC31731FD3D0007A6C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/SignatureGLView.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SignatureGLView/SignatureGLView-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		41E5909517234BB20067E971 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -520,6 +630,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		41312FC11731FD3D0007A6C7 /* Build configuration list for PBXNativeTarget "SignatureGLView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41312FC21731FD3D0007A6C7 /* Debug */,
+				41312FC31731FD3D0007A6C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		41E5906F17234BB20067E971 /* Build configuration list for PBXProject "Ukay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
