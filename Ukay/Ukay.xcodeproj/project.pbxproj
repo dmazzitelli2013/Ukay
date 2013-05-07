@@ -17,6 +17,10 @@
 		413EFE86172CCD39001A0BE3 /* FormGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE85172CCD39001A0BE3 /* FormGroup.m */; };
 		413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */; };
 		413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */; };
+		415C6A6517388BF300970358 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 415C6A6417388BF300970358 /* ImageUtils.m */; };
+		415C6A6A1738911F00970358 /* AttachedPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415C6A681738911F00970358 /* AttachedPhotosViewController.m */; };
+		415C6A6B1738911F00970358 /* AttachedPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 415C6A691738911F00970358 /* AttachedPhotosViewController.xib */; };
+		415C6A711738ABD300970358 /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 415C6A701738ABD300970358 /* logo.gif */; };
 		41DB66C917260BAC00F7FFEB /* form.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66C717260BAC00F7FFEB /* form.png */; };
 		41DB66CA17260BAC00F7FFEB /* form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66C817260BAC00F7FFEB /* form@2x.png */; };
 		41DB66CE1726191500F7FFEB /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DB66CC1726191500F7FFEB /* DatePickerViewController.m */; };
@@ -87,6 +91,12 @@
 		413EFE87172CD81A001A0BE3 /* ManifestCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManifestCellHeader.xib; sourceTree = "<group>"; };
 		413EFE89172CD862001A0BE3 /* ManifestCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManifestCellHeader.h; sourceTree = "<group>"; };
 		413EFE8A172CD862001A0BE3 /* ManifestCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManifestCellHeader.m; sourceTree = "<group>"; };
+		415C6A6317388BF300970358 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		415C6A6417388BF300970358 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		415C6A671738911F00970358 /* AttachedPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhotosViewController.h; sourceTree = "<group>"; };
+		415C6A681738911F00970358 /* AttachedPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhotosViewController.m; sourceTree = "<group>"; };
+		415C6A691738911F00970358 /* AttachedPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachedPhotosViewController.xib; sourceTree = "<group>"; };
+		415C6A701738ABD300970358 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
 		41DB66C717260BAC00F7FFEB /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
 		41DB66C817260BAC00F7FFEB /* form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form@2x.png"; sourceTree = "<group>"; };
 		41DB66CB1726191500F7FFEB /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
@@ -179,6 +189,7 @@
 				41226C7E1723809A0034A050 /* Login */,
 				41E3B34417238B7E00CF7E30 /* Manifest */,
 				41E3B3511723917800CF7E30 /* Form */,
+				415C6A661738909E00970358 /* AttachedPhotos */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -196,6 +207,7 @@
 		41226C7F172383FC0034A050 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				415C6A701738ABD300970358 /* logo.gif */,
 				41DFAD85172B8999001C8E58 /* example.csv */,
 				41DB66D01726257800F7FFEB /* check-icon.png */,
 				41DB66D11726257800F7FFEB /* check-icon@2x.png */,
@@ -231,6 +243,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		415C6A661738909E00970358 /* AttachedPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				415C6A671738911F00970358 /* AttachedPhotosViewController.h */,
+				415C6A681738911F00970358 /* AttachedPhotosViewController.m */,
+				415C6A691738911F00970358 /* AttachedPhotosViewController.xib */,
+			);
+			name = AttachedPhotos;
+			sourceTree = "<group>";
+		};
 		41DFAD7B172B84CB001C8E58 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +271,8 @@
 				41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */,
 				41E5FE0B172D953100E197EB /* PDFGenerator.h */,
 				41E5FE0C172D953100E197EB /* PDFGenerator.m */,
+				415C6A6317388BF300970358 /* ImageUtils.h */,
+				415C6A6417388BF300970358 /* ImageUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -461,6 +485,8 @@
 				41DFAD86172B8999001C8E58 /* example.csv in Resources */,
 				413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */,
 				41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */,
+				415C6A6B1738911F00970358 /* AttachedPhotosViewController.xib in Resources */,
+				415C6A711738ABD300970358 /* logo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +522,8 @@
 				413EFE8B172CD862001A0BE3 /* ManifestCellHeader.m in Sources */,
 				41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */,
 				41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */,
+				415C6A6517388BF300970358 /* ImageUtils.m in Sources */,
+				415C6A6A1738911F00970358 /* AttachedPhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +665,7 @@
 				41312FC31731FD3D0007A6C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		41E5906F17234BB20067E971 /* Build configuration list for PBXProject "Ukay" */ = {
 			isa = XCConfigurationList;

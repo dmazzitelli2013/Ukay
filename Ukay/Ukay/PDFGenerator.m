@@ -14,7 +14,7 @@
 
 @implementation PDFGenerator
 
-+ (void)createPDFfromUIView:(UIView *)view saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert
++ (void)createPDFfromUIView:(UIView *)view andImages:(NSArray *)images saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert
 {
     // Creates a mutable data object for updating with binary data, like a byte array
     NSMutableData *pdfData = [NSMutableData data];

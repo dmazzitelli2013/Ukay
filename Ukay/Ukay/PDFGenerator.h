@@ -10,6 +10,6 @@
 
 @interface PDFGenerator : NSObject
 
-+ (void)createPDFfromUIView:(UIView *)view saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert;
++ (void)createPDFfromUIView:(UIView *)view andImages:(NSArray *)images saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert;
 
 @end

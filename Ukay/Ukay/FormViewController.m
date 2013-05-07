@@ -7,12 +7,14 @@
 //
 
 #import "FormViewController.h"
-#import "Form.h"
-#import "Item.h"
 #import "DatePickerViewController.h"
+#import "AttachedPhotosViewController.h"
 #import "PDFGenerator.h"
 #import "SignatureView.h"
 #import "NICSignatureView.h"
+#import "Form.h"
+#import "Item.h"
+#import "ImageUtils.h"
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 
@@ -51,6 +53,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *checkButtonSix;
 
 @property (nonatomic, retain) UIPopoverController *popover;
+@property (nonatomic, retain) UIPopoverController *imagePopover;
+@property (nonatomic, retain) UIPopoverController *manageImagesPopover;
 
 @property (nonatomic, retain) IBOutlet UIButton *optionsButton;
 
@@ -94,6 +98,14 @@
     
     if(_popover) {
         [_popover release];
+    }
+    
+    if(_imagePopover) {
+        [_imagePopover release];
+    }
+    
+    if(_manageImagesPopover) {
+        [_manageImagesPopover release];
     }
     
     [super dealloc];
@@ -249,7 +261,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Complete Record", @"Generate PDF", @"Back", nil];
+                                                    otherButtonTitles:@"Complete Record", @"Generate PDF", @"Attach Photos", @"Manage Attached Photos", @"Back", nil];
     
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -347,9 +359,18 @@
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    DatePickerViewController *datePickerViewController = (DatePickerViewController *)[popoverController contentViewController];
-    NSString *date = [datePickerViewController getSelectedDate];
-    [_lastTouchedDateField setText:date];
+    if(self.popover == popoverController) {
+
+        DatePickerViewController *datePickerViewController = (DatePickerViewController *)[popoverController contentViewController];
+        NSString *date = [datePickerViewController getSelectedDate];
+        [_lastTouchedDateField setText:date];
+        
+    } else if(self.manageImagesPopover == popoverController) {
+        
+        AttachedPhotosViewController *attachedPhotosViewController = (AttachedPhotosViewController *)[popoverController contentViewController];
+        [attachedPhotosViewController removeFromParentViewController];
+        
+    }
     
     return YES;
 }
@@ -358,6 +379,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIImagePickerController *imagePickerController = nil;
+    AttachedPhotosViewController *attachedPhotosViewController = nil;
+    UIPopoverController *popover = nil;
+    
     switch (buttonIndex) {
         case 0:
             self.form.formState = Completed;
@@ -366,17 +391,53 @@
             
         case 1:
             self.optionsButton.hidden = YES;
-            [PDFGenerator createPDFfromUIView:self.view saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
+            [PDFGenerator createPDFfromUIView:self.view andImages:self.form.attachedPhotoNames saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
             self.optionsButton.hidden = NO;            
             break;
-            
+        
         case 2:
+            imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePickerController.delegate = self;
+            popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+            [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            self.imagePopover = popover;
+            [popover release];
+            [imagePickerController release];
+            break;
+            
+        case 3:
+            attachedPhotosViewController = [[AttachedPhotosViewController alloc] initWithNibName:@"AttachedPhotosViewController" bundle:nil];
+            attachedPhotosViewController.attachedPhotoNames = self.form.attachedPhotoNames;
+            popover = [[UIPopoverController alloc] initWithContentViewController:attachedPhotosViewController];
+            [popover setDelegate:self];
+            [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 320) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            self.manageImagesPopover = popover;
+            [popover release];            
+            break;
+            
+        case 4:
             [self dismissViewControllerAnimated:YES completion:nil];
             break;
             
         default:
             break;
     }
+}
+
+#pragma mark - UIImagePickerControllerDelegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self.imagePopover dismissPopoverAnimated:YES];
+    self.imagePopover = nil;
+    
+    NSString *imageName = [NSString stringWithFormat:@"%@_%d", self.form.reference, [self.form.attachedPhotoNames count]];
+    [self.form.attachedPhotoNames addObject:imageName];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [ImageUtils saveImageInDocuments:image withName:imageName];
 }
 
 @end

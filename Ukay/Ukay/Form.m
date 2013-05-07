@@ -10,6 +10,17 @@
 
 @implementation Form
 
+- (id)init
+{
+    self = [super init];
+    
+    if(self) {
+        self.attachedPhotoNames = [NSMutableArray array];
+    }
+    
+    return self;
+}
+
 - (void)dealloc
 {
     [_driver release];
@@ -26,6 +37,8 @@
     [_customer release];
     [_value release];
     [_items release];
+    
+    [_attachedPhotoNames release];
     
     [super dealloc];
 }

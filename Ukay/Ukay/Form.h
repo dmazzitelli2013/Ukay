@@ -38,6 +38,8 @@ typedef enum {
 
 @property (nonatomic, assign) NSInteger formNumber;
 
+@property (nonatomic, retain) NSMutableArray *attachedPhotoNames;
+
 - (void)addItem:(Item *)item;
 - (void)removeItem:(Item *)item;
 
