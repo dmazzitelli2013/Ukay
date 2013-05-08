@@ -15,6 +15,7 @@
 #import "Form.h"
 #import "Item.h"
 #import "ImageUtils.h"
+#include "TargetConditionals.h"
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 
@@ -253,6 +254,71 @@
     [UIView commitAnimations];
 }
 
+- (void)formCompleted
+{
+    self.form.formState = Completed;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)sendGeneratedPDFFileByEmail
+{
+    NSData *pdfData = [PDFGenerator dataForPDFFileWithName:@"file.pdf"];
+    
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    [mailComposer setMessageBody:@"" isHTML:NO];
+    [mailComposer setSubject:@"Email subject"];
+    [mailComposer addAttachmentData:pdfData mimeType:@"text/x-pdf" fileName:@"file.pdf"];
+    
+    mailComposer.mailComposeDelegate = self;
+    [self presentModalViewController:mailComposer animated:YES];
+    [mailComposer release];
+}
+
+- (void)generatePDFFile
+{    
+    self.optionsButton.hidden = YES;
+    [PDFGenerator createPDFfromUIView:self.view andImages:self.form.attachedPhotoNames saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
+    self.optionsButton.hidden = NO;
+    
+    [self sendGeneratedPDFFileByEmail];
+}
+
+- (void)attachPhoto
+{    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.allowsEditing = YES;
+    
+#if TARGET_IPHONE_SIMULATOR
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+#else
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+#endif
+    
+    imagePickerController.delegate = self;
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+    [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    self.imagePopover = popover;
+    
+    [popover release];
+    [imagePickerController release];
+}
+
+- (void)manageAttachedPhotos
+{
+    AttachedPhotosViewController *attachedPhotosViewController = [[AttachedPhotosViewController alloc] initWithNibName:@"AttachedPhotosViewController" bundle:nil];
+    attachedPhotosViewController.attachedPhotoNames = self.form.attachedPhotoNames;
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:attachedPhotosViewController];
+    [popover setDelegate:self];
+    [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 320) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    self.manageImagesPopover = popover;
+    
+    [popover release];
+    [attachedPhotosViewController release];
+}
+
 #pragma mark - IBActions methods
 
 - (IBAction)optionsButtonPressed:(id)sender
@@ -379,42 +445,21 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIImagePickerController *imagePickerController = nil;
-    AttachedPhotosViewController *attachedPhotosViewController = nil;
-    UIPopoverController *popover = nil;
-    
     switch (buttonIndex) {
         case 0:
-            self.form.formState = Completed;
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self formCompleted];
             break;
             
         case 1:
-            self.optionsButton.hidden = YES;
-            [PDFGenerator createPDFfromUIView:self.view andImages:self.form.attachedPhotoNames saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
-            self.optionsButton.hidden = NO;            
+            [self generatePDFFile];
             break;
         
         case 2:
-            imagePickerController = [[UIImagePickerController alloc] init];
-            imagePickerController.allowsEditing = YES;
-            imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-            imagePickerController.delegate = self;
-            popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
-            [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            self.imagePopover = popover;
-            [popover release];
-            [imagePickerController release];
+            [self attachPhoto];
             break;
             
         case 3:
-            attachedPhotosViewController = [[AttachedPhotosViewController alloc] initWithNibName:@"AttachedPhotosViewController" bundle:nil];
-            attachedPhotosViewController.attachedPhotoNames = self.form.attachedPhotoNames;
-            popover = [[UIPopoverController alloc] initWithContentViewController:attachedPhotosViewController];
-            [popover setDelegate:self];
-            [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 320) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            self.manageImagesPopover = popover;
-            [popover release];            
+            [self manageAttachedPhotos];
             break;
             
         case 4:
@@ -438,6 +483,13 @@
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [ImageUtils saveImageInDocuments:image withName:imageName];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate methods
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "BaseViewController.h"
 #import "Form.h"
 
-@interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain) Form *form;
 

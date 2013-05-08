@@ -91,7 +91,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"View Photo", @"Delete Photo", @"Cancel", nil];
+                                                    otherButtonTitles:@"Delete Photo", @"Cancel", nil];
     
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -103,10 +103,6 @@
 {
     switch (buttonIndex) {
         case 0:
-            // TODO
-            break;
-            
-        case 1:
             [self.attachedPhotoNames removeObject:_currentImageName];
             [ImageUtils deleteImageFromDocuments:_currentImageName];
             [self addImagesToContentView];

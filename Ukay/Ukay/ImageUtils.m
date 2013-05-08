@@ -30,18 +30,18 @@
     [imageData writeToFile:savedImagePath atomically:NO];
 }
 
-+ (void)deleteImageFromDocuments:(NSString *)name
-{
-    NSString *imagePath = [self imagesDirectory];
-    NSString *savedImagePath = [imagePath stringByAppendingPathComponent:name];
-    [[NSFileManager defaultManager] removeItemAtPath:savedImagePath error:nil];
-}
-
-+ (UIImage *)thumbnailForImageName:(NSString *)name
++ (UIImage *)loadImageNamed:(NSString *)name
 {
     NSString *imagesPath = [self imagesDirectory];
     NSString *savedImagePath = [imagesPath stringByAppendingPathComponent:name];
     UIImage *image = [UIImage imageWithContentsOfFile:savedImagePath];
+    
+    return image;
+}
+
++ (UIImage *)thumbnailForImageName:(NSString *)name
+{
+    UIImage *image = [self loadImageNamed:name];
     
     return [self resizedImage:image withMaxWidth:300];
 }
@@ -75,6 +75,13 @@
     CGImageRelease(newImageRef);
     
     return newImage;
+}
+
++ (void)deleteImageFromDocuments:(NSString *)name
+{
+    NSString *imagePath = [self imagesDirectory];
+    NSString *savedImagePath = [imagePath stringByAppendingPathComponent:name];
+    [[NSFileManager defaultManager] removeItemAtPath:savedImagePath error:nil];
 }
 
 @end

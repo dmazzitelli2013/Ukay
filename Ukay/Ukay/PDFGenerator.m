@@ -8,11 +8,19 @@
 
 #import "PDFGenerator.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ImageUtils.h"
 
 #define UITEXTVIEW_MARGIN       10
 #define UITEXTFIELD_MARGIN      5
 
 @implementation PDFGenerator
+
++ (NSString *)pdfsDirectory
+{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) objectAtIndex:0];
+    
+    return documentsDirectory;
+}
 
 + (void)createPDFfromUIView:(UIView *)view andImages:(NSArray *)images saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert
 {
@@ -39,13 +47,14 @@
     [self renderTextFieldsFromView:view];
     [self renderLabelsFromView:view];
     
+    [self renderImages:images];
+    
     // remove PDF rendering context
     UIGraphicsEndPDFContext();
     
     // Retrieves the document directories from the iOS device
-    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:filename];
+    NSString *pdfsDirectory = [self pdfsDirectory];
+    NSString *documentDirectoryFilename = [pdfsDirectory stringByAppendingPathComponent:filename];
     
     // instructs the mutable data object to write its context to a file on disk
     [pdfData writeToFile:documentDirectoryFilename atomically:YES];
@@ -147,6 +156,51 @@
     CGRect renderingRect = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, label.frame.size.height);
     
     [textToDraw drawInRect:renderingRect withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:label.textAlignment];
+}
+
++ (void)renderImages:(NSArray *)images
+{
+    for(NSString *imageName in images) {
+        UIImage *image = [ImageUtils loadImageNamed:imageName];
+        
+        if(image) {
+            UIGraphicsBeginPDFPage();
+            CGRect rect = [self rectForImage:image];
+            [image drawInRect:rect];
+        }
+    }
+}
+
++ (CGRect)rectForImage:(UIImage *)image
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat width = screenRect.size.width;
+    screenRect.size.width = screenRect.size.height;
+    screenRect.size.height = width;
+    
+    CGFloat imageWidth = image.size.width;
+    CGFloat imageHeight = image.size.height;
+    CGFloat aspectRatio = imageWidth / imageHeight;
+    
+    if(imageWidth > imageHeight) {
+        imageWidth = screenRect.size.width;
+        imageHeight = imageWidth / aspectRatio;
+    } else {
+        imageHeight = screenRect.size.height;
+        imageWidth = imageHeight * aspectRatio;
+    }
+    
+    return CGRectMake(0, 0, imageWidth, imageHeight);
+}
+
++ (NSData *)dataForPDFFileWithName:(NSString *)filename
+{
+    NSString *pdfsDirectory = [self pdfsDirectory];
+    NSString *filePath = [pdfsDirectory stringByAppendingPathComponent:filename];
+    NSURL *url = [NSURL fileURLWithPath:filePath];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    return data;
 }
 
 @end

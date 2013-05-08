@@ -11,6 +11,7 @@
 @interface ImageUtils : NSObject
 
 + (void)saveImageInDocuments:(UIImage *)image withName:(NSString *)name;
++ (UIImage *)loadImageNamed:(NSString *)name;
 + (UIImage *)thumbnailForImageName:(NSString *)name;
 + (void)deleteImageFromDocuments:(NSString *)name;
 

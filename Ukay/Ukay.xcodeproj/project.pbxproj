@@ -62,6 +62,7 @@
 		41E5909417234BB20067E971 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41E5909217234BB20067E971 /* LoginViewController.xib */; };
 		41E5FE0D172D953100E197EB /* PDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E5FE0C172D953100E197EB /* PDFGenerator.m */; };
 		41E5FE0F172D959200E197EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5FE0E172D959200E197EB /* QuartzCore.framework */; };
+		41ED6CEA1739ECB7002F2F23 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED6CE91739ECB7002F2F23 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -154,6 +155,7 @@
 		41E5FE0B172D953100E197EB /* PDFGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFGenerator.h; sourceTree = "<group>"; };
 		41E5FE0C172D953100E197EB /* PDFGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFGenerator.m; sourceTree = "<group>"; };
 		41E5FE0E172D959200E197EB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		41ED6CE91739ECB7002F2F23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41ED6CEA1739ECB7002F2F23 /* MessageUI.framework in Frameworks */,
 				41312FC71731FD7F0007A6C7 /* libSignatureGLView.a in Frameworks */,
 				41312FB31731FBAA0007A6C7 /* OpenGLES.framework in Frameworks */,
 				41312FB11731FB8C0007A6C7 /* GLKit.framework in Frameworks */,
@@ -353,6 +356,7 @@
 		41E5907617234BB20067E971 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41ED6CE91739ECB7002F2F23 /* MessageUI.framework */,
 				41312FB21731FBAA0007A6C7 /* OpenGLES.framework */,
 				41312FB01731FB8C0007A6C7 /* GLKit.framework */,
 				41E5FE0E172D959200E197EB /* QuartzCore.framework */,

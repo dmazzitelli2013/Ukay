@@ -11,5 +11,6 @@
 @interface PDFGenerator : NSObject
 
 + (void)createPDFfromUIView:(UIView *)view andImages:(NSArray *)images saveToDocumentsWithFileName:(NSString *)filename showAlert:(BOOL)showAlert;
++ (NSData *)dataForPDFFileWithName:(NSString *)filename;
 
 @end
