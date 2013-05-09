@@ -25,6 +25,8 @@
     UITextField *_lastTouchedDateField;
     NSMutableDictionary *_checkButtonImages;
     NSMutableDictionary *_signatureViews;
+    NSMutableDictionary *_itemsDischargedButtonImages;
+    NSMutableArray *_itemsDischarged;
     BOOL _keyboardShowing;
 }
 
@@ -40,6 +42,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *valueLabel;
 @property (nonatomic, retain) IBOutlet UITextView *quantityTextView;
 @property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
+@property (nonatomic, retain) IBOutlet UIView *dischargedView;
 @property (nonatomic, retain) IBOutlet UITextView *cubeTextView;
 @property (nonatomic, retain) IBOutlet UITextView *chargesTextView;
 @property (nonatomic, retain) IBOutlet UITextView *additionalNotesTextView;
@@ -68,15 +71,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_billToTextView release];
+    [_consigneeTextView release];
+    [_shipperTextView release];
     [_invLabel release];
     [_refLabel release];
     [_typeLabel release];
     [_paymentLabel release];
-    [_consigneeTextView release];
-    [_shipperTextView release];
     [_dateLabel release];
     [_customerLabel release];
     [_valueLabel release];
+    [_quantityTextView release];
+    [_descriptionTextView release];
+    [_cubeTextView release];
+    [_chargesTextView release];
+    [_dischargedView release];
     [_additionalNotesTextView release];
     [_printName release];
     [_dateOne release];
@@ -92,6 +100,8 @@
     [_checkButtonImages release];
     [_optionsButton release];
     [_signatureViews release];
+    [_itemsDischargedButtonImages release];
+    [_itemsDischarged release];
     
     if(_form) {
         [_form release];
@@ -120,74 +130,28 @@
         return;
     }
     
-    self.billToTextView.text = self.form.billTo;
-    self.invLabel.text = self.form.invoice;
-    self.refLabel.text = self.form.reference;
-    self.typeLabel.text = self.form.type;
-    self.paymentLabel.text = self.form.payment;
-    self.consigneeTextView.text = self.form.consignee;
-    self.shipperTextView.text = self.form.shipper;
-    self.dateLabel.text = self.form.date;
-    self.customerLabel.text = self.form.customer;
-    self.valueLabel.text = self.form.value;
-    
-    NSMutableString *quantities = [NSMutableString string];
-    NSMutableString *descriptions = [NSMutableString string];
-    NSMutableString *cubes = [NSMutableString string];
-    NSMutableString *charges = [NSMutableString string];
-    
-    for(Item *item in self.form.items) {
-        [quantities appendFormat:@"%@\n", item.quantity];
-        [descriptions appendFormat:@"%@\n", item.description];
-        [cubes appendFormat:@"%@\n", item.cube];
-        [charges appendFormat:@"%@\n", item.charges];
-    }
-    
-    self.quantityTextView.text = quantities;
-    self.descriptionTextView.text = descriptions;
-    self.cubeTextView.text = cubes;
-    self.chargesTextView.text = charges;
-    
-    [self.additionalNotesTextView setDelegate:self];
-    [self.printName setDelegate:self];
-    [self.dateOne setDelegate:self];
-    [self.dateTwo setDelegate:self];
-    
-    _textBoxesOffsets = [[NSMutableDictionary alloc] init];
-    [_textBoxesOffsets setObject:[NSNumber numberWithInteger:280] forKey:[self.additionalNotesTextView description]];
-    [_textBoxesOffsets setObject:[NSNumber numberWithInteger:310] forKey:[self.printName description]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
-    _keyboardShowing = NO;
-    
-    _checkButtonImages = [[NSMutableDictionary alloc] init];
-    [_checkButtonImages setObject:[UIImage imageNamed:@"check-icon.png"] forKey:@"check"];
-    [_checkButtonImages setObject:[UIImage imageNamed:@"unckeck-icon.png"] forKey:@"uncheck"];
-    
-    [self.checkButtonOne    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    [self.checkButtonTwo    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    [self.checkButtonThree  setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    [self.checkButtonFour   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    [self.checkButtonFive   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    [self.checkButtonSix    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
-    
-    _signatureViews = [[NSMutableDictionary alloc] init];
+    [self initializeFormBody];
+    [self initializeDischargedItems];
+    [self initializeFormFooter];    
 }
 
 - (void)viewDidUnload
 {
     self.billToTextView = nil;
+    self.consigneeTextView = nil;
+    self.shipperTextView = nil;
     self.invLabel = nil;
     self.refLabel = nil;
     self.typeLabel = nil;
     self.paymentLabel = nil;
-    self.consigneeTextView = nil;
-    self.shipperTextView = nil;
     self.dateLabel = nil;
     self.customerLabel = nil;
     self.valueLabel = nil;
+    self.quantityTextView = nil;
+    self.descriptionTextView = nil;
+    self.dischargedView = nil;
+    self.cubeTextView = nil;
+    self.chargesTextView = nil;
     self.additionalNotesTextView = nil;
     self.printName = nil;
     self.dateOne = nil;
@@ -199,15 +163,11 @@
     self.checkButtonFive = nil;
     self.checkButtonSix = nil;
     self.popover = nil;
+    self.imagePopover = nil;
+    self.manageImagesPopover = nil;
     self.optionsButton = nil;
     
     [super viewDidUnload];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)adjustViewPositionForSelectedObject:(NSObject *)object
@@ -319,6 +279,93 @@
     [attachedPhotosViewController release];
 }
 
+#pragma mark - Form Initialization methods
+
+- (void)initializeFormBody
+{
+    self.billToTextView.text = self.form.billTo;
+    self.invLabel.text = self.form.invoice;
+    self.refLabel.text = self.form.reference;
+    self.typeLabel.text = self.form.type;
+    self.paymentLabel.text = self.form.payment;
+    self.consigneeTextView.text = self.form.consignee;
+    self.shipperTextView.text = self.form.shipper;
+    self.dateLabel.text = self.form.date;
+    self.customerLabel.text = self.form.customer;
+    self.valueLabel.text = self.form.value;
+    
+    NSMutableString *quantities = [NSMutableString string];
+    NSMutableString *descriptions = [NSMutableString string];
+    NSMutableString *cubes = [NSMutableString string];
+    NSMutableString *charges = [NSMutableString string];
+    
+    for(Item *item in self.form.items) {
+        [quantities appendFormat:@"%@\n", item.quantity];
+        [descriptions appendFormat:@"%@\n", item.description];
+        [cubes appendFormat:@"%@\n", item.cube];
+        [charges appendFormat:@"%@\n", item.charges];
+    }
+    
+    self.quantityTextView.text = quantities;
+    self.descriptionTextView.text = descriptions;
+    self.cubeTextView.text = cubes;
+    self.chargesTextView.text = charges;
+}
+
+- (void)initializeDischargedItems
+{
+    _itemsDischargedButtonImages = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [_itemsDischargedButtonImages setObject:[UIImage imageNamed:@"box-checked.png"] forKey:@"checked"];
+    [_itemsDischargedButtonImages setObject:[UIImage imageNamed:@"box-unchecked.png"] forKey:@"unchecked"];
+    
+    _itemsDischarged = [[NSMutableArray alloc] init];
+    CGRect buttonFrame = CGRectMake((self.dischargedView.frame.size.width / 2.0f) - 7, 8, 17, 15);
+    
+    for(int i = 0; i < [self.form.items count]; i++) {
+        [_itemsDischarged addObject:[NSNumber numberWithBool:YES]];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:buttonFrame];
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"checked"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(dischargedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTag:i];
+        
+        [self.dischargedView addSubview:button];
+        
+        buttonFrame.origin.y += 18;
+    }
+}
+
+- (void)initializeFormFooter
+{
+    [self.additionalNotesTextView setDelegate:self];
+    [self.printName setDelegate:self];
+    [self.dateOne setDelegate:self];
+    [self.dateTwo setDelegate:self];
+    
+    _textBoxesOffsets = [[NSMutableDictionary alloc] init];
+    [_textBoxesOffsets setObject:[NSNumber numberWithInteger:280] forKey:[self.additionalNotesTextView description]];
+    [_textBoxesOffsets setObject:[NSNumber numberWithInteger:310] forKey:[self.printName description]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    _keyboardShowing = NO;
+    
+    _checkButtonImages = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [_checkButtonImages setObject:[UIImage imageNamed:@"check-icon.png"] forKey:@"check"];
+    [_checkButtonImages setObject:[UIImage imageNamed:@"unckeck-icon.png"] forKey:@"uncheck"];
+    
+    [self.checkButtonOne    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    [self.checkButtonTwo    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    [self.checkButtonThree  setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    [self.checkButtonFour   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    [self.checkButtonFive   setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    [self.checkButtonSix    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
+    
+    _signatureViews = [[NSMutableDictionary alloc] init];
+}
+
 #pragma mark - IBActions methods
 
 - (IBAction)optionsButtonPressed:(id)sender
@@ -331,6 +378,24 @@
     
     [actionSheet showInView:self.view];
     [actionSheet release];
+}
+
+- (IBAction)dischargedButtonPressed:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSInteger buttonNumber = button.tag;
+    
+    BOOL checked;
+    
+    if([button imageForState:UIControlStateNormal] == [_itemsDischargedButtonImages objectForKey:@"checked"]) {
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"unchecked"] forState:UIControlStateNormal];
+        checked = NO;
+    } else {
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"checked"] forState:UIControlStateNormal];
+        checked = YES;
+    }
+    
+    [_itemsDischarged replaceObjectAtIndex:buttonNumber withObject:[NSNumber numberWithBool:checked]];
 }
 
 - (IBAction)checkButtonPressed:(id)sender

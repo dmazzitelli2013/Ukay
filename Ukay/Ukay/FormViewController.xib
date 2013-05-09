@@ -295,7 +295,6 @@
 						<string key="NSFrame">{{940, 691}, {73, 44}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -353,7 +352,7 @@
 					<object class="IBUITextView" id="42436516">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{101, 260}, {640, 290}}</string>
+						<string key="NSFrame">{{101, 260}, {620, 290}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1009451429"/>
@@ -372,10 +371,26 @@
 						<reference key="IBUIFontDescription" ref="56088109"/>
 						<reference key="IBUIFont" ref="251171043"/>
 					</object>
+					<object class="IBUIView" id="523571162">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{729, 260}, {70, 290}}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="589888710">
+								<int key="NSID">2</int>
+							</object>
+						</object>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
 					<object class="IBUITextView" id="1009451429">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{749, 260}, {115, 290}}</string>
+						<string key="NSFrame">{{807, 260}, {79, 290}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="712041160"/>
@@ -398,7 +413,7 @@
 					<object class="IBUITextView" id="712041160">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{872, 260}, {137, 290}}</string>
+						<string key="NSFrame">{{894, 260}, {115, 290}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="429156303"/>
@@ -460,9 +475,7 @@
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="589888710">
-								<int key="NSID">2</int>
-							</object>
+							<reference key="NSCustomColorSpace" ref="589888710"/>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
@@ -954,6 +967,14 @@
 					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dischargedView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="523571162"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">optionsButtonPressed:</string>
 						<reference key="source" ref="614440342"/>
@@ -1087,6 +1108,7 @@
 							<reference ref="112528747"/>
 							<reference ref="194573021"/>
 							<reference ref="545085393"/>
+							<reference ref="523571162"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1235,6 +1257,11 @@
 						<reference key="object" ref="545085393"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">74</int>
+						<reference key="object" ref="523571162"/>
+						<reference key="parent" ref="766721923"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1270,6 +1297,7 @@
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -1277,7 +1305,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">73</int>
+			<int key="maxID">75</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1328,6 +1356,7 @@
 						<string key="dateOne">UITextField</string>
 						<string key="dateTwo">UITextField</string>
 						<string key="descriptionTextView">UITextView</string>
+						<string key="dischargedView">UIView</string>
 						<string key="invLabel">UILabel</string>
 						<string key="optionsButton">UIButton</string>
 						<string key="paymentLabel">UILabel</string>
@@ -1402,6 +1431,10 @@
 						<object class="IBToOneOutletInfo" key="descriptionTextView">
 							<string key="name">descriptionTextView</string>
 							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dischargedView">
+							<string key="name">dischargedView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="invLabel">
 							<string key="name">invLabel</string>
