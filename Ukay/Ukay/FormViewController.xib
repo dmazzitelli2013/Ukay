@@ -355,7 +355,7 @@
 						<string key="NSFrame">{{101, 260}, {620, 290}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1009451429"/>
+						<reference key="NSNextKeyView" ref="523571162"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -377,6 +377,7 @@
 						<string key="NSFrame">{{729, 260}, {70, 290}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1009451429"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -436,7 +437,7 @@
 					<object class="IBUITextView" id="422744605">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{15, 613}, {994, 49}}</string>
+						<string key="NSFrame">{{15, 627}, {994, 36}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="140118409"/>
@@ -540,7 +541,7 @@
 					<object class="IBUIButton" id="429156303">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{347, 556}, {17, 15}}</string>
+						<string key="NSFrame">{{345, 555}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="179050984"/>
@@ -572,7 +573,7 @@
 					<object class="IBUIButton" id="838641113">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{347, 574}, {17, 15}}</string>
+						<string key="NSFrame">{{345, 578}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="838585913"/>
@@ -594,7 +595,7 @@
 					<object class="IBUIButton" id="913540942">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{347, 592}, {17, 15}}</string>
+						<string key="NSFrame">{{345, 601}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="681637392"/>
@@ -616,7 +617,7 @@
 					<object class="IBUIButton" id="179050984">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{852, 556}, {17, 15}}</string>
+						<string key="NSFrame">{{850, 555}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="838641113"/>
@@ -638,7 +639,7 @@
 					<object class="IBUIButton" id="838585913">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{852, 574}, {17, 15}}</string>
+						<string key="NSFrame">{{850, 578}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="913540942"/>
@@ -660,7 +661,7 @@
 					<object class="IBUIButton" id="681637392">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{852, 592}, {17, 15}}</string>
+						<string key="NSFrame">{{850, 601}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="422744605"/>
@@ -726,7 +727,7 @@
 					<object class="IBUIImageView" id="545085393">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {200, 32}}</string>
+						<string key="NSFrame">{{105, 20}, {200, 32}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="599307221"/>
@@ -1091,24 +1092,24 @@
 							<reference ref="720289438"/>
 							<reference ref="614440342"/>
 							<reference ref="157618048"/>
-							<reference ref="199084531"/>
 							<reference ref="1009451429"/>
 							<reference ref="42436516"/>
 							<reference ref="712041160"/>
-							<reference ref="422744605"/>
 							<reference ref="140118409"/>
 							<reference ref="288722988"/>
 							<reference ref="124559771"/>
-							<reference ref="429156303"/>
-							<reference ref="838641113"/>
-							<reference ref="913540942"/>
-							<reference ref="179050984"/>
-							<reference ref="838585913"/>
-							<reference ref="681637392"/>
 							<reference ref="112528747"/>
 							<reference ref="194573021"/>
 							<reference ref="545085393"/>
 							<reference ref="523571162"/>
+							<reference ref="838641113"/>
+							<reference ref="913540942"/>
+							<reference ref="199084531"/>
+							<reference ref="429156303"/>
+							<reference ref="179050984"/>
+							<reference ref="681637392"/>
+							<reference ref="838585913"/>
+							<reference ref="422744605"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1322,12 +1323,17 @@
 					<string key="superclassName">BaseViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="checkButtonPressed:">id</string>
+						<string key="dischargedButtonPressed:">id</string>
 						<string key="optionsButtonPressed:">id</string>
 						<string key="signatureButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="checkButtonPressed:">
 							<string key="name">checkButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="dischargedButtonPressed:">
+							<string key="name">dischargedButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="optionsButtonPressed:">
@@ -1490,7 +1496,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="buttonBackground.png">{312, 73}</string>
-			<string key="check-icon.png">{17, 15}</string>
+			<string key="check-icon.png">{20, 20}</string>
 			<string key="form.png">{1024, 748}</string>
 			<string key="logo.gif">{200, 32}</string>
 		</dictionary>

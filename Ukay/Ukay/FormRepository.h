@@ -12,5 +12,6 @@
 
 - (NSArray *)getAllForms;
 - (NSArray *)getAllFormGroupsForForms:(NSArray *)forms;
+- (NSArray *)getAllFormGroupsForToday;
 
 @end

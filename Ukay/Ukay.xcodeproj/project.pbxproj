@@ -21,23 +21,23 @@
 		415C6A6A1738911F00970358 /* AttachedPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415C6A681738911F00970358 /* AttachedPhotosViewController.m */; };
 		415C6A6B1738911F00970358 /* AttachedPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 415C6A691738911F00970358 /* AttachedPhotosViewController.xib */; };
 		415C6A711738ABD300970358 /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 415C6A701738ABD300970358 /* logo.gif */; };
+		4163014B17488FB900FB4C44 /* form.png in Resources */ = {isa = PBXBuildFile; fileRef = 4163014917488FB900FB4C44 /* form.png */; };
+		4163014C17488FB900FB4C44 /* form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4163014A17488FB900FB4C44 /* form@2x.png */; };
+		416301511748914200FB4C44 /* check-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4163014D1748914200FB4C44 /* check-icon.png */; };
+		416301521748914200FB4C44 /* check-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4163014E1748914200FB4C44 /* check-icon@2x.png */; };
+		416301531748914200FB4C44 /* uncheck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4163014F1748914200FB4C44 /* uncheck-icon.png */; };
+		416301541748914200FB4C44 /* uncheck-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 416301501748914200FB4C44 /* uncheck-icon@2x.png */; };
+		41630159174892F300FB4C44 /* box-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41630155174892F300FB4C44 /* box-checked.png */; };
+		4163015A174892F300FB4C44 /* box-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41630156174892F300FB4C44 /* box-checked@2x.png */; };
+		4163015B174892F300FB4C44 /* box-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41630157174892F300FB4C44 /* box-unchecked.png */; };
+		4163015C174892F300FB4C44 /* box-unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41630158174892F300FB4C44 /* box-unchecked@2x.png */; };
 		41DB66CE1726191500F7FFEB /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DB66CC1726191500F7FFEB /* DatePickerViewController.m */; };
 		41DB66CF1726191500F7FFEB /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66CD1726191500F7FFEB /* DatePickerViewController.xib */; };
-		41DB66D41726257800F7FFEB /* check-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D01726257800F7FFEB /* check-icon.png */; };
-		41DB66D51726257800F7FFEB /* check-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D11726257800F7FFEB /* check-icon@2x.png */; };
-		41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D21726257800F7FFEB /* unckeck-icon.png */; };
-		41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */; };
 		41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41DCBD01172F523200C0C2DB /* SignatureView.xib */; };
 		41DCBD05172F528D00C0C2DB /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DCBD04172F528D00C0C2DB /* SignatureView.m */; };
 		41DFAD7E172B84E0001C8E58 /* FormRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DFAD7D172B84E0001C8E58 /* FormRepository.m */; };
 		41DFAD86172B8999001C8E58 /* example.csv in Resources */ = {isa = PBXBuildFile; fileRef = 41DFAD85172B8999001C8E58 /* example.csv */; };
 		41DFAD8C172B9B85001C8E58 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */; };
-		41DFF5AD173B566700582E44 /* form.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5AB173B566700582E44 /* form.png */; };
-		41DFF5AE173B566700582E44 /* form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5AC173B566700582E44 /* form@2x.png */; };
-		41DFF5B3173B583900582E44 /* box-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5AF173B583900582E44 /* box-checked.png */; };
-		41DFF5B4173B583900582E44 /* box-checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5B0173B583900582E44 /* box-checked@2x.png */; };
-		41DFF5B5173B583900582E44 /* box-unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5B1173B583900582E44 /* box-unchecked.png */; };
-		41DFF5B6173B583900582E44 /* box-unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DFF5B2173B583900582E44 /* box-unchecked@2x.png */; };
 		41E014021728AD3700058041 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E014011728AD3700058041 /* BaseViewController.m */; };
 		41E3B33E17238A3300CF7E30 /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E3B33817238A3300CF7E30 /* buttonBackground.png */; };
 		41E3B33F17238A3300CF7E30 /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E3B33917238A3300CF7E30 /* buttonBackground@2x.png */; };
@@ -102,13 +102,19 @@
 		415C6A681738911F00970358 /* AttachedPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhotosViewController.m; sourceTree = "<group>"; };
 		415C6A691738911F00970358 /* AttachedPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachedPhotosViewController.xib; sourceTree = "<group>"; };
 		415C6A701738ABD300970358 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
+		4163014917488FB900FB4C44 /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
+		4163014A17488FB900FB4C44 /* form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form@2x.png"; sourceTree = "<group>"; };
+		4163014D1748914200FB4C44 /* check-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon.png"; sourceTree = "<group>"; };
+		4163014E1748914200FB4C44 /* check-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon@2x.png"; sourceTree = "<group>"; };
+		4163014F1748914200FB4C44 /* uncheck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheck-icon.png"; sourceTree = "<group>"; };
+		416301501748914200FB4C44 /* uncheck-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheck-icon@2x.png"; sourceTree = "<group>"; };
+		41630155174892F300FB4C44 /* box-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-checked.png"; sourceTree = "<group>"; };
+		41630156174892F300FB4C44 /* box-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-checked@2x.png"; sourceTree = "<group>"; };
+		41630157174892F300FB4C44 /* box-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-unchecked.png"; sourceTree = "<group>"; };
+		41630158174892F300FB4C44 /* box-unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-unchecked@2x.png"; sourceTree = "<group>"; };
 		41DB66CB1726191500F7FFEB /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		41DB66CC1726191500F7FFEB /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		41DB66CD1726191500F7FFEB /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
-		41DB66D01726257800F7FFEB /* check-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon.png"; sourceTree = "<group>"; };
-		41DB66D11726257800F7FFEB /* check-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-icon@2x.png"; sourceTree = "<group>"; };
-		41DB66D21726257800F7FFEB /* unckeck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon.png"; sourceTree = "<group>"; };
-		41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unckeck-icon@2x.png"; sourceTree = "<group>"; };
 		41DCBD01172F523200C0C2DB /* SignatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
 		41DCBD03172F528D00C0C2DB /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
 		41DCBD04172F528D00C0C2DB /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
@@ -117,12 +123,6 @@
 		41DFAD85172B8999001C8E58 /* example.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.csv; sourceTree = "<group>"; };
 		41DFAD8A172B9B28001C8E58 /* CHCSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		41DFAD8B172B9B28001C8E58 /* CHCSVParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
-		41DFF5AB173B566700582E44 /* form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form.png; sourceTree = "<group>"; };
-		41DFF5AC173B566700582E44 /* form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form@2x.png"; sourceTree = "<group>"; };
-		41DFF5AF173B583900582E44 /* box-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-checked.png"; sourceTree = "<group>"; };
-		41DFF5B0173B583900582E44 /* box-checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-checked@2x.png"; sourceTree = "<group>"; };
-		41DFF5B1173B583900582E44 /* box-unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-unchecked.png"; sourceTree = "<group>"; };
-		41DFF5B2173B583900582E44 /* box-unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-unchecked@2x.png"; sourceTree = "<group>"; };
 		41E014001728AD3700058041 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		41E014011728AD3700058041 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		41E3B33817238A3300CF7E30 /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
@@ -218,18 +218,18 @@
 		41226C7F172383FC0034A050 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				41DFF5AB173B566700582E44 /* form.png */,
-				41DFF5AC173B566700582E44 /* form@2x.png */,
-				41DFF5AF173B583900582E44 /* box-checked.png */,
-				41DFF5B0173B583900582E44 /* box-checked@2x.png */,
-				41DFF5B1173B583900582E44 /* box-unchecked.png */,
-				41DFF5B2173B583900582E44 /* box-unchecked@2x.png */,
+				4163014917488FB900FB4C44 /* form.png */,
+				4163014A17488FB900FB4C44 /* form@2x.png */,
+				41630155174892F300FB4C44 /* box-checked.png */,
+				41630156174892F300FB4C44 /* box-checked@2x.png */,
+				41630157174892F300FB4C44 /* box-unchecked.png */,
+				41630158174892F300FB4C44 /* box-unchecked@2x.png */,
 				415C6A701738ABD300970358 /* logo.gif */,
 				41DFAD85172B8999001C8E58 /* example.csv */,
-				41DB66D01726257800F7FFEB /* check-icon.png */,
-				41DB66D11726257800F7FFEB /* check-icon@2x.png */,
-				41DB66D21726257800F7FFEB /* unckeck-icon.png */,
-				41DB66D31726257800F7FFEB /* unckeck-icon@2x.png */,
+				4163014D1748914200FB4C44 /* check-icon.png */,
+				4163014E1748914200FB4C44 /* check-icon@2x.png */,
+				4163014F1748914200FB4C44 /* uncheck-icon.png */,
+				416301501748914200FB4C44 /* uncheck-icon@2x.png */,
 				41E3B33817238A3300CF7E30 /* buttonBackground.png */,
 				41E3B33917238A3300CF7E30 /* buttonBackground@2x.png */,
 				41E3B33A17238A3300CF7E30 /* buttonBackgroundPressed.png */,
@@ -492,21 +492,21 @@
 				41E3B35017238EFA00CF7E30 /* ManifestCell.xib in Resources */,
 				41E3B356172391C900CF7E30 /* FormViewController.xib in Resources */,
 				41DB66CF1726191500F7FFEB /* DatePickerViewController.xib in Resources */,
-				41DB66D41726257800F7FFEB /* check-icon.png in Resources */,
-				41DB66D51726257800F7FFEB /* check-icon@2x.png in Resources */,
-				41DB66D61726257800F7FFEB /* unckeck-icon.png in Resources */,
-				41DB66D71726257800F7FFEB /* unckeck-icon@2x.png in Resources */,
 				41DFAD86172B8999001C8E58 /* example.csv in Resources */,
 				413EFE88172CD81A001A0BE3 /* ManifestCellHeader.xib in Resources */,
 				41DCBD02172F523200C0C2DB /* SignatureView.xib in Resources */,
 				415C6A6B1738911F00970358 /* AttachedPhotosViewController.xib in Resources */,
 				415C6A711738ABD300970358 /* logo.gif in Resources */,
-				41DFF5AD173B566700582E44 /* form.png in Resources */,
-				41DFF5AE173B566700582E44 /* form@2x.png in Resources */,
-				41DFF5B3173B583900582E44 /* box-checked.png in Resources */,
-				41DFF5B4173B583900582E44 /* box-checked@2x.png in Resources */,
-				41DFF5B5173B583900582E44 /* box-unchecked.png in Resources */,
-				41DFF5B6173B583900582E44 /* box-unchecked@2x.png in Resources */,
+				4163014B17488FB900FB4C44 /* form.png in Resources */,
+				4163014C17488FB900FB4C44 /* form@2x.png in Resources */,
+				416301511748914200FB4C44 /* check-icon.png in Resources */,
+				416301521748914200FB4C44 /* check-icon@2x.png in Resources */,
+				416301531748914200FB4C44 /* uncheck-icon.png in Resources */,
+				416301541748914200FB4C44 /* uncheck-icon@2x.png in Resources */,
+				41630159174892F300FB4C44 /* box-checked.png in Resources */,
+				4163015A174892F300FB4C44 /* box-checked@2x.png in Resources */,
+				4163015B174892F300FB4C44 /* box-unchecked.png in Resources */,
+				4163015C174892F300FB4C44 /* box-unchecked@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +619,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -643,7 +643,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;

@@ -319,7 +319,7 @@
     [_itemsDischargedButtonImages setObject:[UIImage imageNamed:@"box-unchecked.png"] forKey:@"unchecked"];
     
     _itemsDischarged = [[NSMutableArray alloc] init];
-    CGRect buttonFrame = CGRectMake((self.dischargedView.frame.size.width / 2.0f) - 7, 8, 17, 15);
+    CGRect buttonFrame = CGRectMake((self.dischargedView.frame.size.width / 2.0f) - 7, 6, 19, 19);
     
     for(int i = 0; i < [self.form.items count]; i++) {
         [_itemsDischarged addObject:[NSNumber numberWithBool:YES]];
@@ -332,7 +332,7 @@
         
         [self.dischargedView addSubview:button];
         
-        buttonFrame.origin.y += 18;
+        buttonFrame.origin.y += 20;
     }
 }
 

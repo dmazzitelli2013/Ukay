@@ -39,8 +39,7 @@
     [super viewDidLoad];
     
     FormRepository *repository = [[FormRepository alloc] init];
-    NSArray *forms = [repository getAllForms];
-    self.formsGroups = [repository getAllFormGroupsForForms:forms];
+    self.formsGroups = [repository getAllFormGroupsForToday];
     [repository release];
 }
 

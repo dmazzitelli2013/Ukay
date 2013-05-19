@@ -141,6 +141,27 @@
     return formGroups;
 }
 
+- (NSArray *)getAllFormGroupsForToday
+{
+    NSArray *forms = [self getAllForms];
+    NSArray *formGroups = [self getAllFormGroupsForForms:forms];
+    
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yy"];
+    NSString *stringFromTodaysDate = [formatter stringFromDate:date];
+    [formatter release];
+    
+    NSMutableArray *todaysGroups = [NSMutableArray array];
+    for(FormGroup *group in formGroups) {
+        if([group.date isEqualToString:stringFromTodaysDate]) {
+            [todaysGroups addObject:group];
+        }
+    }
+    
+    return todaysGroups;
+}
+
 - (FormGroup *)createFormGroup:(Form *)form
 {
     return [[[FormGroup alloc] initWithForm:form] autorelease];
