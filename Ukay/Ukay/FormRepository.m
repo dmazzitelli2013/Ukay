@@ -152,9 +152,15 @@
     NSString *stringFromTodaysDate = [formatter stringFromDate:date];
     [formatter release];
     
+    int i = 0, j = 0;
     NSMutableArray *todaysGroups = [NSMutableArray array];
     for(FormGroup *group in formGroups) {
         if([group.date isEqualToString:stringFromTodaysDate]) {
+            for(j = i; j < ([group getFormsCount] + i); j++) {
+                Form *form = [group getFormAtIndex:j];
+                form.formNumber = (j + 1);
+            }
+            i += [group getFormsCount];
             [todaysGroups addObject:group];
         }
     }

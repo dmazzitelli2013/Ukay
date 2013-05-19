@@ -73,7 +73,7 @@
 
     NSMutableString *quantityString = [NSMutableString string];
     NSMutableString *descriptionString = [NSMutableString string];
-    
+
     for(Item *item in self.form.items) {
         [quantityString appendFormat:@"%@\n", item.quantity];
         
