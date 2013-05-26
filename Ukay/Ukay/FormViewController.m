@@ -57,6 +57,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *checkButtonFour;
 @property (nonatomic, retain) IBOutlet UIButton *checkButtonFive;
 @property (nonatomic, retain) IBOutlet UIButton *checkButtonSix;
+@property (nonatomic, retain) IBOutlet UILabel *formTitleLabel;
 
 @property (nonatomic, retain) UIPopoverController *popover;
 @property (nonatomic, retain) UIPopoverController *imagePopover;
@@ -98,6 +99,7 @@
     [_checkButtonFour release];
     [_checkButtonFive release];
     [_checkButtonSix release];
+    [_formTitleLabel release];
     
     [_textBoxesOffsets release];
     [_checkButtonImages release];
@@ -167,6 +169,7 @@
     self.checkButtonFour = nil;
     self.checkButtonFive = nil;
     self.checkButtonSix = nil;
+    self.formTitleLabel = nil;
     self.popover = nil;
     self.imagePopover = nil;
     self.manageImagesPopover = nil;
@@ -288,6 +291,7 @@
 
 - (void)initializeFormBody
 {
+    self.formTitleLabel.text = self.form.title;
     self.billToTextView.text = self.form.billTo;
     self.invLabel.text = self.form.invoice;
     self.refLabel.text = self.form.reference;
