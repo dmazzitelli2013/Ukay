@@ -26,6 +26,7 @@
     NSMutableDictionary *_checkButtonImages;
     NSMutableDictionary *_signatureViews;
     NSMutableDictionary *_itemsDischargedButtonImages;
+    NSMutableArray *_itemsPickedUp;
     NSMutableArray *_itemsDischarged;
     BOOL _keyboardShowing;
 }
@@ -42,6 +43,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *valueLabel;
 @property (nonatomic, retain) IBOutlet UITextView *quantityTextView;
 @property (nonatomic, retain) IBOutlet UITextView *descriptionTextView;
+@property (nonatomic, retain) IBOutlet UIView *pickedupView;
 @property (nonatomic, retain) IBOutlet UIView *dischargedView;
 @property (nonatomic, retain) IBOutlet UITextView *cubeTextView;
 @property (nonatomic, retain) IBOutlet UITextView *chargesTextView;
@@ -84,6 +86,7 @@
     [_descriptionTextView release];
     [_cubeTextView release];
     [_chargesTextView release];
+    [_pickedupView release];
     [_dischargedView release];
     [_additionalNotesTextView release];
     [_printName release];
@@ -101,6 +104,7 @@
     [_optionsButton release];
     [_signatureViews release];
     [_itemsDischargedButtonImages release];
+    [_itemsPickedUp release];
     [_itemsDischarged release];
     
     if(_form) {
@@ -131,7 +135,7 @@
     }
     
     [self initializeFormBody];
-    [self initializeDischargedItems];
+    [self initializeDischargedAndPickedUpItems];
     [self initializeFormFooter];    
 }
 
@@ -149,6 +153,7 @@
     self.valueLabel = nil;
     self.quantityTextView = nil;
     self.descriptionTextView = nil;
+    self.pickedupView = nil;
     self.dischargedView = nil;
     self.cubeTextView = nil;
     self.chargesTextView = nil;
@@ -312,19 +317,29 @@
     self.chargesTextView.text = charges;
 }
 
-- (void)initializeDischargedItems
+- (void)initializeDischargedAndPickedUpItems
 {
     _itemsDischargedButtonImages = [[NSMutableDictionary alloc] initWithCapacity:2];
     [_itemsDischargedButtonImages setObject:[UIImage imageNamed:@"box-checked.png"] forKey:@"checked"];
     [_itemsDischargedButtonImages setObject:[UIImage imageNamed:@"box-unchecked.png"] forKey:@"unchecked"];
     
+    _itemsPickedUp = [[NSMutableArray alloc] init];
     _itemsDischarged = [[NSMutableArray alloc] init];
     CGRect buttonFrame = CGRectMake((self.dischargedView.frame.size.width / 2.0f) - 7, 6, 19, 19);
     
     for(int i = 0; i < [self.form.items count]; i++) {
+        [_itemsPickedUp addObject:[NSNumber numberWithBool:YES]];
         [_itemsDischarged addObject:[NSNumber numberWithBool:YES]];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:buttonFrame];
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"checked"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pickedUpButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTag:i];
+        
+        [self.pickedupView addSubview:button];
+        
+        button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:buttonFrame];
         [button setImage:[_itemsDischargedButtonImages objectForKey:@"checked"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(dischargedButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -374,10 +389,28 @@
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Complete Record", @"Generate PDF", @"Attach Photos", @"Manage Attached Photos", @"Back", nil];
+                                                    otherButtonTitles:@"Complete Record", @"Send Receipt", @"Attach Photos", @"Manage Attached Photos", @"Back", nil];
     
     [actionSheet showInView:self.view];
     [actionSheet release];
+}
+
+- (IBAction)pickedUpButtonPressed:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSInteger buttonNumber = button.tag;
+    
+    BOOL checked;
+    
+    if([button imageForState:UIControlStateNormal] == [_itemsDischargedButtonImages objectForKey:@"checked"]) {
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"unchecked"] forState:UIControlStateNormal];
+        checked = NO;
+    } else {
+        [button setImage:[_itemsDischargedButtonImages objectForKey:@"checked"] forState:UIControlStateNormal];
+        checked = YES;
+    }
+    
+    [_itemsPickedUp replaceObjectAtIndex:buttonNumber withObject:[NSNumber numberWithBool:checked]];
 }
 
 - (IBAction)dischargedButtonPressed:(id)sender

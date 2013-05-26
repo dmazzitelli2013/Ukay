@@ -23,6 +23,7 @@
 
 - (void)dealloc
 {
+    [_title release];
     [_driver release];
     [_helper release];
     [_routeName release];

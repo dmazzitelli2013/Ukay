@@ -67,19 +67,20 @@
 {
     Form *form = [[[Form alloc] init] autorelease];
     
-    form.driver = [formComponents objectAtIndex:0];
-    form.helper = [formComponents objectAtIndex:1];
-    form.routeName = [formComponents objectAtIndex:2];
-    form.billTo = [formComponents objectAtIndex:8];
-    form.payment = [formComponents objectAtIndex:14];
-    form.invoice = [formComponents objectAtIndex:4];
-    form.reference = [formComponents objectAtIndex:5];
-    form.type = [formComponents objectAtIndex:9];
-    form.consignee = [formComponents objectAtIndex:6];
-    form.shipper = [formComponents objectAtIndex:7];
-    form.date = [formComponents objectAtIndex:3];
-    form.customer = [formComponents objectAtIndex:15];
-    form.value = [formComponents objectAtIndex:16];
+    form.title = [formComponents objectAtIndex:0];
+    form.driver = [formComponents objectAtIndex:1];
+    form.helper = [formComponents objectAtIndex:2];
+    form.routeName = [formComponents objectAtIndex:3];
+    form.billTo = [formComponents objectAtIndex:9];
+    form.payment = [formComponents objectAtIndex:15];
+    form.invoice = [formComponents objectAtIndex:5];
+    form.reference = [formComponents objectAtIndex:6];
+    form.type = [formComponents objectAtIndex:10];
+    form.consignee = [formComponents objectAtIndex:7];
+    form.shipper = [formComponents objectAtIndex:8];
+    form.date = [formComponents objectAtIndex:4];
+    form.customer = [formComponents objectAtIndex:16];
+    form.value = [formComponents objectAtIndex:17];
     
     return form;
 }
@@ -88,10 +89,10 @@
 {
     Item *item = [[Item alloc] init];
     
-    item.quantity = [formComponents objectAtIndex:10];
-    item.description = [formComponents objectAtIndex:11];
-    item.cube = [formComponents objectAtIndex:12];
-    item.charges = [formComponents objectAtIndex:13];
+    item.quantity = [formComponents objectAtIndex:11];
+    item.description = [formComponents objectAtIndex:12];
+    item.cube = [formComponents objectAtIndex:13];
+    item.charges = [formComponents objectAtIndex:14];
     
     [form addItem:item];
     

@@ -18,6 +18,7 @@ typedef enum {
 
 @property (nonatomic, assign) FormState formState;
 
+@property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *driver;
 @property (nonatomic, retain) NSString *helper;
 @property (nonatomic, retain) NSString *routeName;
