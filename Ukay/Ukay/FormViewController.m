@@ -7,6 +7,8 @@
 //
 
 #import "FormViewController.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "DatePickerViewController.h"
 #import "AttachedPhotosViewController.h"
 #import "PDFGenerator.h"
@@ -385,6 +387,38 @@
     _signatureViews = [[NSMutableDictionary alloc] init];
 }
 
+- (void)openMapWithAddress:(NSString *)address
+{   
+    Class itemClass = [MKMapItem class];
+    if(itemClass && [itemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
+        // iOS 6
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+            if([placemarks count] > 0) {
+                MKPlacemark *placeMark = [[MKPlacemark alloc] initWithPlacemark:[placemarks objectAtIndex:0]];
+                MKMapItem *mapItemAddress = [[MKMapItem alloc] initWithPlacemark:placeMark];
+                MKMapItem *mapItemCurrentLocation = [MKMapItem mapItemForCurrentLocation];
+                NSArray *mapItems = @[mapItemAddress, mapItemCurrentLocation];
+                
+                NSDictionary *options = @{
+                                          MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                          MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
+                                          MKLaunchOptionsShowsTrafficKey:@YES
+                                        };
+                
+                [MKMapItem openMapsWithItems:mapItems launchOptions:options];
+            } else {
+                // error nothing found
+            }
+        }];
+        
+    } else {
+        
+        // do something for iOS 5
+        
+    }
+}
+
 #pragma mark - IBActions methods
 
 - (IBAction)optionsButtonPressed:(id)sender
@@ -457,6 +491,31 @@
     }
 
     [signatureView addSlowInView:self.view];
+}
+
+- (IBAction)addressButtonPressed:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSString *address = @"";
+    
+    switch (button.tag) {
+        case 0:
+            address = self.billToTextView.text;
+            break;
+        
+        case 1:
+            address = self.consigneeTextView.text;
+            break;
+            
+        case 2:
+            address = self.shipperTextView.text;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self openMapWithAddress:address];
 }
 
 #pragma mark - UITextViewDelegate methods
