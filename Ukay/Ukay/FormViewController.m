@@ -397,16 +397,9 @@
             if([placemarks count] > 0) {
                 MKPlacemark *placeMark = [[MKPlacemark alloc] initWithPlacemark:[placemarks objectAtIndex:0]];
                 MKMapItem *mapItemAddress = [[MKMapItem alloc] initWithPlacemark:placeMark];
-                MKMapItem *mapItemCurrentLocation = [MKMapItem mapItemForCurrentLocation];
-                NSArray *mapItems = @[mapItemAddress, mapItemCurrentLocation];
+                NSArray *mapItems = @[mapItemAddress];
                 
-                NSDictionary *options = @{
-                                          MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-                                          MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
-                                          MKLaunchOptionsShowsTrafficKey:@YES
-                                        };
-                
-                [MKMapItem openMapsWithItems:mapItems launchOptions:options];
+                [MKMapItem openMapsWithItems:mapItems launchOptions:nil];
             } else {
                 // error nothing found
             }
@@ -500,7 +493,7 @@
     
     switch (button.tag) {
         case 0:
-            address = self.billToTextView.text;
+            address = @"16910 Cherie Place, Carson, California"; // TODO: Hardcoded. Change for "self.billToTextView.text;"
             break;
         
         case 1:
