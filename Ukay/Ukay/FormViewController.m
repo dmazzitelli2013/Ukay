@@ -17,9 +17,14 @@
 #import "Form.h"
 #import "Item.h"
 #import "ImageUtils.h"
+#import "JSONKit.h"
+#import "MapViewController.h"
+#import "MBProgressHUD.h"
 #include "TargetConditionals.h"
 
+
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
+#define GOOGLE_GEOCODE_URL @"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=false"
 
 @interface FormViewController () {
     NSMutableDictionary *_textBoxesOffsets;
@@ -66,6 +71,9 @@
 @property (nonatomic, retain) UIPopoverController *manageImagesPopover;
 
 @property (nonatomic, retain) IBOutlet UIButton *optionsButton;
+
+@property (nonatomic, retain) NSString *mapAnnotationAddress;
+@property (nonatomic, retain) NSString *mapAnnotationName;
 
 @end
 
@@ -125,6 +133,14 @@
     
     if(_manageImagesPopover) {
         [_manageImagesPopover release];
+    }
+    
+    if(_mapAnnotationAddress) {
+        [_mapAnnotationAddress release];
+    }
+    
+    if(_mapAnnotationName) {
+        [_mapAnnotationName release];
     }
     
     [super dealloc];
@@ -375,7 +391,7 @@
     
     _checkButtonImages = [[NSMutableDictionary alloc] initWithCapacity:2];
     [_checkButtonImages setObject:[UIImage imageNamed:@"check-icon.png"] forKey:@"check"];
-    [_checkButtonImages setObject:[UIImage imageNamed:@"unckeck-icon.png"] forKey:@"uncheck"];
+    [_checkButtonImages setObject:[UIImage imageNamed:@"uncheck-icon.png"] forKey:@"uncheck"];
     
     [self.checkButtonOne    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
     [self.checkButtonTwo    setImage:[_checkButtonImages objectForKey:@"uncheck"] forState:UIControlStateNormal];
@@ -387,27 +403,135 @@
     _signatureViews = [[NSMutableDictionary alloc] init];
 }
 
-- (void)openMapWithAddress:(NSString *)address
+- (void)showMapError
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Map Error" message:@"There were problems to show the map" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
+- (NSDictionary *)retrieveLocationDictionaryFromData:(NSDictionary *)data
+{
+    if(!data) {
+        return nil;
+    }
+    
+    @try {
+        NSString *status = [data objectForKey:@"status"];
+        
+        if(![status isEqualToString:@"OK"]) {
+            return nil;
+        }
+        
+        NSArray *results = [data objectForKey:@"results"];
+        
+        if(!results || ![results count]) {
+            return nil;
+        }
+        
+        NSDictionary *geometry = [[results objectAtIndex:0] objectForKey:@"geometry"];
+        
+        if(!geometry) {
+            return nil;
+        }
+        
+        NSDictionary *location = [geometry objectForKey:@"location"];
+        
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:location];
+        
+        [dictionary setObject:[[results objectAtIndex:0] objectForKey:@"formatted_address"] forKey:@"address"];
+        
+        return dictionary;
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+}
+
+- (void)openMapForIOS5WithAddress:(NSString *)address andName:(NSString *)name
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    self.mapAnnotationAddress = address;
+    self.mapAnnotationName = name;
+    
+    NSArray *chunks = [[address stringByReplacingOccurrencesOfString:@"," withString:@""] componentsSeparatedByString:@" "];
+    NSString *locationStr = [chunks componentsJoinedByString:@"+"];
+    NSURL *googleUrl = [NSURL URLWithString:[NSString stringWithFormat:GOOGLE_GEOCODE_URL, locationStr]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:googleUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:5.0];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+}
+
+- (void)doOpenMapForIOS5WithData:(NSData *)googleData
+{
+    NSString *response = [[[NSString alloc] initWithData:googleData encoding:NSUTF8StringEncoding] autorelease];
+     
+    if(!response) {
+        [self showMapError];
+        return;
+    }
+     
+    NSDictionary *data = [response objectFromJSONString];
+    NSDictionary *location = [self retrieveLocationDictionaryFromData:data];
+     
+    NSNumber *latitude = [location objectForKey:@"lat"];
+    NSNumber *longitude = [location objectForKey:@"lng"];
+    NSString *formattedAddress = [location objectForKey:@"address"];
+     
+    if(!latitude || !longitude) {
+        [self showMapError];
+        return;
+    }
+     
+     if(!formattedAddress) {
+         formattedAddress = self.mapAnnotationAddress;
+     }
+     
+     [MBProgressHUD hideHUDForView:self.view animated:YES];
+     
+     MapViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+     mapViewController.latitude = latitude;
+     mapViewController.longitude = longitude;
+     mapViewController.annotationTitle = self.mapAnnotationName;
+     mapViewController.annotationSubtitle = formattedAddress;
+     
+     [self presentModalViewController:mapViewController animated:YES];
+    
+     [mapViewController release];
+}
+
+- (void)openMapForIOS6WithAddress:(NSString *)address
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if([placemarks count] > 0) {
+            MKPlacemark *placeMark = [[MKPlacemark alloc] initWithPlacemark:[placemarks objectAtIndex:0]];
+            MKMapItem *mapItemAddress = [[MKMapItem alloc] initWithPlacemark:placeMark];
+            NSArray *mapItems = @[mapItemAddress];
+            
+            [MKMapItem openMapsWithItems:mapItems launchOptions:nil];
+            [placeMark release];
+            [mapItemAddress release];
+        } else {
+            [self showMapError];
+        }
+    }];
+}
+
+- (void)openMapWithAddress:(NSString *)address andName:(NSString *)name
 {   
     Class itemClass = [MKMapItem class];
     if(itemClass && [itemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
+        
         // iOS 6
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
-            if([placemarks count] > 0) {
-                MKPlacemark *placeMark = [[MKPlacemark alloc] initWithPlacemark:[placemarks objectAtIndex:0]];
-                MKMapItem *mapItemAddress = [[MKMapItem alloc] initWithPlacemark:placeMark];
-                NSArray *mapItems = @[mapItemAddress];
-                
-                [MKMapItem openMapsWithItems:mapItems launchOptions:nil];
-            } else {
-                // error nothing found
-            }
-        }];
+        [self openMapForIOS6WithAddress:address];
         
     } else {
         
-        // do something for iOS 5
+        // iOS 5
+        [self openMapForIOS5WithAddress:address andName:name];
         
     }
 }
@@ -490,25 +614,29 @@
 {
     UIButton *button = (UIButton *)sender;
     NSString *address = @"";
+    NSString *name = @"";
     
     switch (button.tag) {
         case 0:
             address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.billToAddress, self.form.billToCity, self.form.billToState, self.form.billToZipCode];
+            name = self.form.billToName;
             break;
         
         case 1:
             address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.consigneeAddress, self.form.consigneeCity, self.form.consigneeState, self.form.consigneeZipCode];
+            name = self.form.consigneeName;
             break;
             
         case 2:
             address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.shipperAddress, self.form.shipperCity, self.form.shipperState, self.form.shipperZipCode];
+            name = self.form.shipperName;
             break;
             
         default:
             break;
     }
     
-    [self openMapWithAddress:address];
+    [self openMapWithAddress:address andName:name];
 }
 
 #pragma mark - UITextViewDelegate methods
@@ -644,6 +772,18 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     [controller dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - NSURLConnectionDelegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self performSelectorOnMainThread:@selector(doOpenMapForIOS5WithData:) withObject:data waitUntilDone:NO];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [self performSelectorOnMainThread:@selector(showMapError) withObject:nil waitUntilDone:NO];
 }
 
 @end
