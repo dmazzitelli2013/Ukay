@@ -23,14 +23,29 @@ typedef enum {
 @property (nonatomic, retain) NSString *helper;
 @property (nonatomic, retain) NSString *routeName;
 
-@property (nonatomic, retain) NSString *billTo;
+@property (nonatomic, retain) NSString *billToName;
+@property (nonatomic, retain) NSString *billToAddress;
+@property (nonatomic, retain) NSString *billToCity;
+@property (nonatomic, retain) NSString *billToState;
+@property (nonatomic, retain) NSString *billToZipCode;
+@property (nonatomic, retain) NSString *billToPhone;
 @property (nonatomic, retain) NSString *invoice;
 @property (nonatomic, retain) NSString *reference;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *payment;
 
-@property (nonatomic, retain) NSString *consignee;
-@property (nonatomic, retain) NSString *shipper;
+@property (nonatomic, retain) NSString *consigneeName;
+@property (nonatomic, retain) NSString *consigneeAddress;
+@property (nonatomic, retain) NSString *consigneeCity;
+@property (nonatomic, retain) NSString *consigneeState;
+@property (nonatomic, retain) NSString *consigneeZipCode;
+@property (nonatomic, retain) NSString *consigneePhone;
+@property (nonatomic, retain) NSString *shipperName;
+@property (nonatomic, retain) NSString *shipperAddress;
+@property (nonatomic, retain) NSString *shipperCity;
+@property (nonatomic, retain) NSString *shipperState;
+@property (nonatomic, retain) NSString *shipperZipCode;
+@property (nonatomic, retain) NSString *shipperPhone;
 @property (nonatomic, retain) NSString *date;
 @property (nonatomic, retain) NSString *customer;
 @property (nonatomic, retain) NSString *value;

@@ -69,7 +69,7 @@
     self.customerLabel.text = self.form.customer;
     self.invoiceNumberLabel.text = self.form.invoice;
     self.typeLabel.text = self.form.type;
-    self.consigneeTextView.text = self.form.consignee;
+    self.consigneeTextView.text = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", self.form.consigneeAddress, self.form.consigneeCity, self.form.consigneeState, self.form.consigneeZipCode, self.form.consigneePhone];
 
     NSMutableString *quantityString = [NSMutableString string];
     NSMutableString *descriptionString = [NSMutableString string];

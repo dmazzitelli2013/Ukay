@@ -294,13 +294,13 @@
 - (void)initializeFormBody
 {
     self.formTitleLabel.text = self.form.title;
-    self.billToTextView.text = self.form.billTo;
+    self.billToTextView.text = [NSString stringWithFormat:@"%@,\n%@, %@, %@ %@,\n%@", self.form.billToName, self.form.billToAddress, self.form.billToCity, self.form.billToState, self.form.billToZipCode, self.form.billToPhone];
     self.invLabel.text = self.form.invoice;
     self.refLabel.text = self.form.reference;
     self.typeLabel.text = self.form.type;
     self.paymentLabel.text = self.form.payment;
-    self.consigneeTextView.text = self.form.consignee;
-    self.shipperTextView.text = self.form.shipper;
+    self.consigneeTextView.text = [NSString stringWithFormat:@"%@,\n%@, %@, %@ %@,\n%@", self.form.consigneeName, self.form.consigneeAddress, self.form.consigneeCity, self.form.consigneeState, self.form.consigneeZipCode, self.form.consigneePhone];
+    self.shipperTextView.text = [NSString stringWithFormat:@"%@,\n%@, %@, %@ %@,\n%@", self.form.shipperName, self.form.shipperAddress, self.form.shipperCity, self.form.shipperState, self.form.shipperZipCode, self.form.shipperPhone];
     self.dateLabel.text = self.form.date;
     self.customerLabel.text = self.form.customer;
     self.valueLabel.text = self.form.value;
@@ -493,15 +493,15 @@
     
     switch (button.tag) {
         case 0:
-            address = @"16910 Cherie Place, Carson, California"; // TODO: Hardcoded. Change for "self.billToTextView.text;"
+            address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.billToAddress, self.form.billToCity, self.form.billToState, self.form.billToZipCode];
             break;
         
         case 1:
-            address = self.consigneeTextView.text;
+            address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.consigneeAddress, self.form.consigneeCity, self.form.consigneeState, self.form.consigneeZipCode];
             break;
             
         case 2:
-            address = self.shipperTextView.text;
+            address = [NSString stringWithFormat:@"%@, %@, %@ %@", self.form.shipperAddress, self.form.shipperCity, self.form.shipperState, self.form.shipperZipCode];
             break;
             
         default:

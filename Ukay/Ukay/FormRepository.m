@@ -71,16 +71,31 @@
     form.driver = [formComponents objectAtIndex:1];
     form.helper = [formComponents objectAtIndex:2];
     form.routeName = [formComponents objectAtIndex:3];
-    form.billTo = [formComponents objectAtIndex:9];
-    form.payment = [formComponents objectAtIndex:15];
+    form.billToName = [formComponents objectAtIndex:19];
+    form.billToAddress = [formComponents objectAtIndex:20];
+    form.billToCity = [formComponents objectAtIndex:21];
+    form.billToState = [formComponents objectAtIndex:22];
+    form.billToZipCode = [formComponents objectAtIndex:23];
+    form.billToPhone = [formComponents objectAtIndex:24];
+    form.payment = [formComponents objectAtIndex:30];
     form.invoice = [formComponents objectAtIndex:5];
     form.reference = [formComponents objectAtIndex:6];
-    form.type = [formComponents objectAtIndex:10];
-    form.consignee = [formComponents objectAtIndex:7];
-    form.shipper = [formComponents objectAtIndex:8];
+    form.type = [formComponents objectAtIndex:25];
+    form.consigneeName = [formComponents objectAtIndex:7];
+    form.consigneeAddress = [formComponents objectAtIndex:8];
+    form.consigneeCity = [formComponents objectAtIndex:9];
+    form.consigneeState = [formComponents objectAtIndex:10];
+    form.consigneeZipCode = [formComponents objectAtIndex:11];
+    form.consigneePhone = [formComponents objectAtIndex:12];
+    form.shipperName = [formComponents objectAtIndex:13];
+    form.shipperAddress = [formComponents objectAtIndex:14];
+    form.shipperCity = [formComponents objectAtIndex:15];
+    form.shipperState = [formComponents objectAtIndex:16];
+    form.shipperZipCode = [formComponents objectAtIndex:17];
+    form.shipperPhone = [formComponents objectAtIndex:18];
     form.date = [formComponents objectAtIndex:4];
-    form.customer = [formComponents objectAtIndex:16];
-    form.value = [formComponents objectAtIndex:17];
+    form.customer = [formComponents objectAtIndex:31];
+    form.value = [formComponents objectAtIndex:32];
     
     return form;
 }
@@ -89,10 +104,10 @@
 {
     Item *item = [[Item alloc] init];
     
-    item.quantity = [formComponents objectAtIndex:11];
-    item.description = [formComponents objectAtIndex:12];
-    item.cube = [formComponents objectAtIndex:13];
-    item.charges = [formComponents objectAtIndex:14];
+    item.quantity = [formComponents objectAtIndex:26];
+    item.description = [formComponents objectAtIndex:27];
+    item.cube = [formComponents objectAtIndex:28];
+    item.charges = [formComponents objectAtIndex:29];
     
     [form addItem:item];
     
