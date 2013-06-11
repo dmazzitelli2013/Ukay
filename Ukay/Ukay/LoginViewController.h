@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "ServerConnectionManager.h"
 
-@interface LoginViewController : BaseViewController
+@interface LoginViewController : BaseViewController <ServerConnectionManagerDelegate>
 
 @end

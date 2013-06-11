@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4100FD581766B5EF003796C2 /* ServerConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4100FD571766B5EF003796C2 /* ServerConnectionManager.m */; };
 		41312FB11731FB8C0007A6C7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41312FB01731FB8C0007A6C7 /* GLKit.framework */; };
 		41312FB31731FBAA0007A6C7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41312FB21731FBAA0007A6C7 /* OpenGLES.framework */; };
 		41312FB91731FD3D0007A6C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5907917234BB20067E971 /* Foundation.framework */; };
@@ -89,6 +90,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4100FD561766B5EF003796C2 /* ServerConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectionManager.h; sourceTree = "<group>"; };
+		4100FD571766B5EF003796C2 /* ServerConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectionManager.m; sourceTree = "<group>"; };
 		41312FB01731FB8C0007A6C7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		41312FB21731FBAA0007A6C7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		41312FB81731FD3D0007A6C7 /* libSignatureGLView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSignatureGLView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +213,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4100FD551766B5BF003796C2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4100FD561766B5EF003796C2 /* ServerConnectionManager.h */,
+				4100FD571766B5EF003796C2 /* ServerConnectionManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		41226C7D172380890034A050 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +479,7 @@
 				41E5908617234BB20067E971 /* AppDelegate.h */,
 				41E5908717234BB20067E971 /* AppDelegate.m */,
 				41DFAD7F172B8762001C8E58 /* Utils */,
+				4100FD551766B5BF003796C2 /* Managers */,
 				41DFAD7B172B84CB001C8E58 /* Repository */,
 				41E3B35B1723A5DF00CF7E30 /* Models */,
 				41226C7D172380890034A050 /* ViewControllers */,
@@ -630,6 +643,7 @@
 				413FF3CF175440EE00AF72E5 /* JSONKit.m in Sources */,
 				413FF3D81754435300AF72E5 /* MapViewController.m in Sources */,
 				413FF3DD175450BA00AF72E5 /* MBProgressHUD.m in Sources */,
+				4100FD581766B5EF003796C2 /* ServerConnectionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

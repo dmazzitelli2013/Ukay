@@ -8,6 +8,9 @@
 
 #import "LoginViewController.h"
 #import "ManifestViewController.h"
+#import "FormRepository.h"
+#import "ServerConnectionManager.h"
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
 
@@ -53,9 +56,45 @@
 
 - (IBAction)loginButtonPressed:(id)sender
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    ServerConnectionManager *serverConnectionManager = [[ServerConnectionManager alloc] init];
+    [serverConnectionManager loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text withDelegate:self];
+}
+
+#pragma mark - ServerConnectionManagerDelegate methods
+
+- (void)serverRespondsWithData:(NSDictionary *)data
+{
+    NSString *driverId = [data objectForKey:@"id"];
+    [FormRepository setDriverId:driverId];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     ManifestViewController *manifestViewController = [[ManifestViewController alloc] initWithNibName:@"ManifestViewController" bundle:nil];
     [self presentViewController:manifestViewController animated:YES completion:nil];
     [manifestViewController release];
+}
+
+- (void)serverRespondsWithErrorCode:(NSInteger)code
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    NSString *message = nil;
+    
+    if(code == 401) {
+        message = @"Invalid username or password.";
+    } else {
+        message = @"There were problems connecting to the server. Please check your internet connection.";
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 
 @end

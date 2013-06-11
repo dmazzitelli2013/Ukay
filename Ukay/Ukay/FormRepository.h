@@ -10,6 +10,7 @@
 
 @interface FormRepository : NSObject
 
++ (void)setDriverId:(NSString *)driverId;
 - (NSArray *)getAllForms;
 - (NSArray *)getAllFormGroupsForForms:(NSArray *)forms;
 - (NSArray *)getAllFormGroupsForToday;

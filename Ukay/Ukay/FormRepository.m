@@ -14,6 +14,17 @@
 
 @implementation FormRepository
 
+NSString *_driverId = nil;
+
++ (void)setDriverId:(NSString *)driverId
+{
+    if(_driverId) {
+        [_driverId release];
+    }
+    
+    _driverId = [driverId retain];
+}
+
 - (NSArray *)getAllForms
 {
     // TODO: change file for webservice
