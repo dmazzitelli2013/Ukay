@@ -117,4 +117,11 @@
 	return cell;
 }
 
+#pragma mark - IBAction methods
+
+- (IBAction)logoutButtonPressed:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 @end

@@ -56,7 +56,8 @@
     NSString *loginUrlStr = [NSString stringWithFormat:LOGIN_URL, username, [self md5:password]];
     NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, loginUrlStr];
     NSURL *loginUrl = [NSURL URLWithString:actualUrlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:loginUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:loginUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
     [connection start];

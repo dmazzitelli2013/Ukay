@@ -37,6 +37,19 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [FormRepository setDriverId:nil];
+    
+    [self.usernameTextField setText:@""];
+    [self.passwordTextField setText:@""];
+    
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
 - (void)viewDidUnload
 {
     self.usernameTextField = nil;
@@ -66,6 +79,8 @@
 
 - (void)serverRespondsWithData:(NSDictionary *)data
 {
+    NSLog(@"%@", data);
+    
     NSString *driverId = [data objectForKey:@"id"];
     [FormRepository setDriverId:driverId];
     
