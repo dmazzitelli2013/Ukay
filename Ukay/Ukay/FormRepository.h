@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ServerConnectionManager.h"
 
-@interface FormRepository : NSObject
+@interface FormRepository : NSObject <ServerConnectionManagerDelegate>
 
 + (void)setDriverId:(NSString *)driverId;
 - (NSArray *)getAllForms;
 - (NSArray *)getAllFormGroupsForForms:(NSArray *)forms;
 - (NSArray *)getAllFormGroupsForToday;
+- (void)fetchCSVFromServerWithCallback:(id)target selector:(SEL)selector;
 
 @end

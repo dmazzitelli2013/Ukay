@@ -12,6 +12,15 @@
 #import "Item.h"
 #import "FormGroup.h"
 
+@interface FormRepository () {
+    ServerConnectionManager *_serverConnectionManager;
+    NSString *_csv;
+    id _target;
+    SEL _selector;
+}
+
+@end
+
 @implementation FormRepository
 
 NSString *_driverId = nil;
@@ -25,13 +34,53 @@ NSString *_driverId = nil;
     _driverId = [driverId retain];
 }
 
+- (void)dealloc
+{
+    if(_serverConnectionManager) {
+        [_serverConnectionManager release];
+    }
+    
+    if(_csv) {
+        [_csv release];
+    }
+    
+    [super dealloc];
+}
+
+- (void)fetchCSVFromServerWithCallback:(id)target selector:(SEL)selector
+{
+    if(_serverConnectionManager) {
+        [_serverConnectionManager release];
+    }
+    
+    _target = target;
+    _selector = selector;
+    
+    _serverConnectionManager = [[ServerConnectionManager alloc] init];
+    [_serverConnectionManager fetchCSVForDriverId:_driverId andDate:[NSDate date] withDelegate:self];
+}
+
+- (void)serverRespondsWithData:(NSDictionary *)data
+{
+    _csv = [[data objectForKey:@"csv"] retain];
+    
+    if(_target && _selector) {
+        [_target performSelector:_selector withObject:nil];
+    }
+}
+
+- (void)serverRespondsWithErrorCode:(NSInteger)code
+{
+    // TODO
+}
+
 - (NSArray *)getAllForms
 {
-    // TODO: change file for webservice
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"example" ofType:@"csv"];
-    NSString *CSVString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-
-    NSArray *components = [CSVString CSVComponents];
+    if(!_csv) {
+        return nil;
+    }
+    
+    NSArray *components = [_csv CSVComponents];
     NSMutableDictionary *componentsByReferenceNumber = [NSMutableDictionary dictionary];
     
     for(NSArray *formComponents in components) {
@@ -169,7 +218,7 @@ NSString *_driverId = nil;
 }
 
 - (NSArray *)getAllFormGroupsForToday
-{
+{    
     NSArray *forms = [self getAllForms];
     NSArray *formGroups = [self getAllFormGroupsForForms:forms];
     

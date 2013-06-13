@@ -13,8 +13,11 @@
 #import "FormRepository.h"
 #import "Form.h"
 #import "FormGroup.h"
+#import "MBProgressHUD.h"
 
-@interface ManifestViewController ()
+@interface ManifestViewController () {
+    FormRepository *_repository;
+}
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
 @property (nonatomic, retain) NSArray *formsGroups;
@@ -31,6 +34,10 @@
         [_formsGroups release];
     }
     
+    if(_repository) {
+        [_repository release];
+    }
+    
     [super dealloc];
 }
 
@@ -38,9 +45,23 @@
 {
     [super viewDidLoad];
     
-    FormRepository *repository = [[FormRepository alloc] init];
-    self.formsGroups = [repository getAllFormGroupsForToday];
-    [repository release];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    _repository = [[FormRepository alloc] init];
+    [_repository fetchCSVFromServerWithCallback:self selector:@selector(csvFetched)];
+
+}
+
+- (void)csvFetched
+{
+    self.formsGroups = [_repository getAllFormGroupsForToday];
+    
+    [_repository release];
+    _repository = nil;
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    [self.table reloadData];
 }
 
 - (void)viewDidUnload

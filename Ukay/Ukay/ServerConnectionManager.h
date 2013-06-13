@@ -19,5 +19,6 @@
 @interface ServerConnectionManager : NSObject
 
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withDelegate:(id<ServerConnectionManagerDelegate>)delegate;
+- (void)fetchCSVForDriverId:(NSString *)driverId andDate:(NSDate *)date withDelegate:(id<ServerConnectionManagerDelegate>)delegate;
 
 @end

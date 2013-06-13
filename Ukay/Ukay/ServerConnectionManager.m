@@ -13,7 +13,8 @@
 #define BASE_URL        @"http://54.215.10.61"
 #define WEBSERVICE_URL  @"/index.php"
 
-#define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@"    //user/[username]/pass/[MD5 password]
+#define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@"        //user/[username]/pass/[MD5 password]
+#define CSV_URL         @"/drivercsv/data/driver_id/%@/date/%@"     //driver_id/[driver ID]/date/[date with format YYYY-MM-DD]
 
 @interface ServerConnectionManager () {
     NSMutableData *_data;
@@ -63,6 +64,26 @@
     [connection start];
 }
 
+- (void)fetchCSVForDriverId:(NSString *)driverId andDate:(NSDate *)date withDelegate:(id<ServerConnectionManagerDelegate>)delegate
+{
+    self.delegate = delegate;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [formatter stringFromDate:date];
+    [formatter release];
+    
+    NSString *webserviceUrlStr = [NSString stringWithFormat:@"%@%@", BASE_URL, WEBSERVICE_URL];
+    NSString *csvUrlStr = [NSString stringWithFormat:CSV_URL, driverId, dateStr];
+    NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, csvUrlStr];
+    NSURL *csvUrl = [NSURL URLWithString:actualUrlStr];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:csvUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:20];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [connection start];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
@@ -87,6 +108,7 @@
 {
     NSString *dataString = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
     NSDictionary *dictionary = [dataString objectFromJSONString];
+    [dataString release];
     
     if(self.delegate) {
         [self.delegate serverRespondsWithData:dictionary];

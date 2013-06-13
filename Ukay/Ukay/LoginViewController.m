@@ -12,7 +12,9 @@
 #import "ServerConnectionManager.h"
 #import "MBProgressHUD.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () {
+    ServerConnectionManager *_serverConnectionManager;
+}
 
 @property (nonatomic, retain) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, retain) IBOutlet UITextField *passwordTextField;
@@ -27,6 +29,10 @@
     [_usernameTextField release];
     [_passwordTextField release];
     [_loginButton release];
+    
+    if(_serverConnectionManager) {
+        [_serverConnectionManager dealloc];
+    }
     
     [super dealloc];
 }
@@ -69,10 +75,17 @@
 
 - (IBAction)loginButtonPressed:(id)sender
 {
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    ServerConnectionManager *serverConnectionManager = [[ServerConnectionManager alloc] init];
-    [serverConnectionManager loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text withDelegate:self];
+    if(_serverConnectionManager) {
+        [_serverConnectionManager release];
+    }
+    
+    _serverConnectionManager = [[ServerConnectionManager alloc] init];
+    [_serverConnectionManager loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text withDelegate:self];
 }
 
 #pragma mark - ServerConnectionManagerDelegate methods
