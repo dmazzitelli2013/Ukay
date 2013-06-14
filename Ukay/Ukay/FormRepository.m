@@ -71,7 +71,11 @@ NSString *_driverId = nil;
 
 - (void)serverRespondsWithErrorCode:(NSInteger)code
 {
-    // TODO
+    _csv = nil;
+    
+    if(_target && _selector) {
+        [_target performSelector:_selector withObject:nil];
+    }
 }
 
 - (NSArray *)getAllForms
