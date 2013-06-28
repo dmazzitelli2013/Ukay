@@ -12,6 +12,8 @@
 #import "Item.h"
 #import "FormGroup.h"
 
+#define COUNT_FIELDS    33
+
 @interface FormRepository () {
     ServerConnectionManager *_serverConnectionManager;
     NSString *_csv;
@@ -89,6 +91,10 @@ NSString *_driverId = nil;
     
     for(NSArray *formComponents in components) {
         formComponents = [self clearComponents:formComponents];
+        
+        if([formComponents count] < COUNT_FIELDS) {
+            continue;
+        }
         
         NSString *referenceNumber = [formComponents objectAtIndex:5];
         Form *form = [componentsByReferenceNumber objectForKey:referenceNumber];
