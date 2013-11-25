@@ -10,6 +10,7 @@
 #import "ManifestViewController.h"
 #import "FormRepository.h"
 #import "ServerConnectionManager.h"
+#import "AppDelegate.h"
 #import "MBProgressHUD.h"
 
 @interface LoginViewController () {
@@ -84,8 +85,10 @@
         [_serverConnectionManager release];
     }
     
+    NSString *pushToken = [AppDelegate sharedAppDelegate].pushToken;
+    
     _serverConnectionManager = [[ServerConnectionManager alloc] init];
-    [_serverConnectionManager loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text withDelegate:self];
+    [_serverConnectionManager loginWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text andPushToken:pushToken withDelegate:self];
 }
 
 #pragma mark - ServerConnectionManagerDelegate methods

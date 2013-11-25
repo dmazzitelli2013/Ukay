@@ -754,11 +754,15 @@
 		41E5909817234BB20067E971 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Edgardo Mazzitelli (LEW3843X2S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Edgardo Mazzitelli (LEW3843X2S)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ukay/Ukay-Prefix.pch";
 				INFOPLIST_FILE = "Ukay/Ukay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "66C481A6-CB05-4940-AE8C-6B53C758BC40";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "66C481A6-CB05-4940-AE8C-6B53C758BC40";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -766,11 +770,15 @@
 		41E5909917234BB20067E971 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Edgardo Mazzitelli (LEW3843X2S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Edgardo Mazzitelli (LEW3843X2S)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ukay/Ukay-Prefix.pch";
 				INFOPLIST_FILE = "Ukay/Ukay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "66C481A6-CB05-4940-AE8C-6B53C758BC40";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "66C481A6-CB05-4940-AE8C-6B53C758BC40";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -26,8 +26,17 @@
 
 @implementation ManifestViewController
 
+static ManifestViewController *_instance;
+
++ (ManifestViewController *)sharedManifestViewController
+{
+    return _instance;
+}
+
 - (void)dealloc
 {
+    _instance = nil;
+    
     [_table release];
     
     if(_formsGroups) {
@@ -45,11 +54,17 @@
 {
     [super viewDidLoad];
     
+    _instance = self;
+    
+    [self fetchData];
+}
+
+- (void)fetchData
+{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     _repository = [[FormRepository alloc] init];
     [_repository fetchCSVFromServerWithCallback:self selector:@selector(csvFetched)];
-
 }
 
 - (void)csvFetched

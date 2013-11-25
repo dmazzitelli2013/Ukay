@@ -7,10 +7,17 @@
 //
 
 #import "AppDelegate.h"
-
 #import "LoginViewController.h"
+#import "ManifestViewController.h"
 
 @implementation AppDelegate
+
+static AppDelegate *_instance;
+
++ (AppDelegate *)sharedAppDelegate
+{
+    return _instance;
+}
 
 - (void)dealloc
 {
@@ -21,6 +28,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _instance = self;
+    
+    self.pushToken = @"";
+    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
@@ -43,17 +56,47 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [application setApplicationIconBadgeNumber:0];
+    [self updateManifestSilent];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [application setApplicationIconBadgeNumber:0];
+    [self updateManifestSilent];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [deviceToken description];
+    token = [token stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    self.pushToken = token;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    ManifestViewController *manifestViewController = [ManifestViewController sharedManifestViewController];
+    if(manifestViewController) {
+        [manifestViewController fetchData];
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Update" message:@"There's new information" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+}
+
+- (void)updateManifestSilent
+{
+    ManifestViewController *manifestViewController = [ManifestViewController sharedManifestViewController];
+    if(manifestViewController) {
+        [manifestViewController fetchData];
+    }
 }
 
 @end

@@ -10,11 +10,12 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "JSONKit.h"
 
-#define BASE_URL        @"http://54.215.10.61"
+//#define BASE_URL        @"http://54.215.10.61"            // prod
+#define BASE_URL        @"http://181.46.136.50/ukay"        // dev
 #define WEBSERVICE_URL  @"/index.php"
 
-#define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@"        //user/[username]/pass/[MD5 password]
-#define CSV_URL         @"/drivercsv/data/driver_id/%@/date/%@"     //driver_id/[driver ID]/date/[date with format YYYY-MM-DD]
+#define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@/token/%@"       //user/[username]/pass/[MD5 password]/token/[push_token]
+#define CSV_URL         @"/drivercsv/data/driver_id/%@/date/%@"             //driver_id/[driver ID]/date/[date with format YYYY-MM-DD]
 
 @interface ServerConnectionManager () {
     NSMutableData *_data;
@@ -49,12 +50,12 @@
     return  output;
 }
 
-- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withDelegate:(id<ServerConnectionManagerDelegate>)delegate
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password andPushToken:(NSString *)pushToken withDelegate:(id<ServerConnectionManagerDelegate>)delegate
 {
     self.delegate = delegate;
     
     NSString *webserviceUrlStr = [NSString stringWithFormat:@"%@%@", BASE_URL, WEBSERVICE_URL];
-    NSString *loginUrlStr = [NSString stringWithFormat:LOGIN_URL, username, [self md5:password]];
+    NSString *loginUrlStr = [NSString stringWithFormat:LOGIN_URL, username, [self md5:password], pushToken];
     NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, loginUrlStr];
     NSURL *loginUrl = [NSURL URLWithString:actualUrlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:loginUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];

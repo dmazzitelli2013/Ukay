@@ -11,4 +11,8 @@
 
 @interface ManifestViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource>
 
++ (ManifestViewController *)sharedManifestViewController;
+
+- (void)fetchData;
+
 @end
