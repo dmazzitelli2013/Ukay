@@ -10,8 +10,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "JSONKit.h"
 
-//#define BASE_URL        @"http://54.215.10.61"            // prod
-#define BASE_URL        @"http://181.46.136.50/ukay"        // dev
+#define BASE_URL        @"http://54.215.10.61"            // prod
+//#define BASE_URL        @"http://181.46.136.50/ukay"        // dev
 #define WEBSERVICE_URL  @"/index.php"
 
 #define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@/token/%@"       //user/[username]/pass/[MD5 password]/token/[push_token]
@@ -58,7 +58,7 @@
     NSString *loginUrlStr = [NSString stringWithFormat:LOGIN_URL, username, [self md5:password], pushToken];
     NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, loginUrlStr];
     NSURL *loginUrl = [NSURL URLWithString:actualUrlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:loginUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:10];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:loginUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
@@ -78,7 +78,7 @@
     NSString *csvUrlStr = [NSString stringWithFormat:CSV_URL, driverId, dateStr];
     NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, csvUrlStr];
     NSURL *csvUrl = [NSURL URLWithString:actualUrlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:csvUrl cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:20];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:csvUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
