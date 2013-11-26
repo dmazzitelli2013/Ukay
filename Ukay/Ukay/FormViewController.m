@@ -291,12 +291,37 @@
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 #else
     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    CGFloat scaleFactor = 1.0f;
+    
+    switch ([UIApplication sharedApplication].statusBarOrientation) {
+        case UIInterfaceOrientationLandscapeLeft:
+            imagePickerController.cameraViewTransform = CGAffineTransformScale(CGAffineTransformMakeRotation(M_PI * 90 / 180.0), scaleFactor, scaleFactor);
+            break;
+            
+        case UIInterfaceOrientationLandscapeRight:
+            imagePickerController.cameraViewTransform = CGAffineTransformScale(CGAffineTransformMakeRotation(M_PI * -90 / 180.0), scaleFactor, scaleFactor);
+            break;
+            
+        case UIInterfaceOrientationPortraitUpsideDown:
+            imagePickerController.cameraViewTransform = CGAffineTransformMakeRotation(M_PI * 180 / 180.0);
+            break;
+            
+        default:
+            break;
+    }
 #endif
     
     imagePickerController.delegate = self;
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
     [popover presentPopoverFromRect:CGRectMake(0, 0, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+#if !TARGET_IPHONE_SIMULATOR
+    [popover setPopoverContentSize:CGSizeMake(720.0f, 710.0f)];
+#endif
+
     self.imagePopover = popover;
     
     [popover release];
