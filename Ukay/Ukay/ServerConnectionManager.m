@@ -11,11 +11,12 @@
 #import "JSONKit.h"
 
 #define BASE_URL        @"http://54.215.10.61"            // prod
-//#define BASE_URL        @"http://181.46.136.50/ukay"        // dev
+//#define BASE_URL        @"http://181.46.136.50/ukay"      // dev
 #define WEBSERVICE_URL  @"/index.php"
 
 #define LOGIN_URL       @"/driverlogin/data/user/%@/pass/%@/token/%@"       //user/[username]/pass/[MD5 password]/token/[push_token]
 #define CSV_URL         @"/drivercsv/data/driver_id/%@/date/%@"             //driver_id/[driver ID]/date/[date with format YYYY-MM-DD]
+#define UPLOADER_URL    @"/uploader/upload/file/%@"
 
 @interface ServerConnectionManager () {
     NSMutableData *_data;
@@ -80,6 +81,26 @@
     NSURL *csvUrl = [NSURL URLWithString:actualUrlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:csvUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    [connection start];
+}
+
+- (void)uploadBase64File:(NSString *)base64File withFilename:(NSString *)filename withDelegate:(id<ServerConnectionManagerDelegate>)delegate
+{
+    self.delegate = delegate;
+    
+    NSString *webserviceUrlStr = [NSString stringWithFormat:@"%@%@", BASE_URL, WEBSERVICE_URL];
+    NSString *uploaderUrlStr = [NSString stringWithFormat:UPLOADER_URL, filename];
+    NSString *actualUrlStr = [NSString stringWithFormat:@"%@%@", webserviceUrlStr, uploaderUrlStr];
+    NSURL *uploaderUrl = [NSURL URLWithString:actualUrlStr];
+    NSString *base64Body = [NSString stringWithFormat:@"contents=%@", base64File];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:uploaderUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:180];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    [request setHTTPMethod:@"PUT"];
+    [request setHTTPBody:[base64Body dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
     [connection start];

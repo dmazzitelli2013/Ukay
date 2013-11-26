@@ -20,8 +20,10 @@
 #import "JSONKit.h"
 #import "MapViewController.h"
 #import "MBProgressHUD.h"
+#import "ZipArchive.h"
+#import "FormRepository.h"
+#import "FormUploaderManager.h"
 #include "TargetConditionals.h"
-
 
 #define DATEPICKER_FRAME    CGSizeMake(343, 216)
 #define GOOGLE_GEOCODE_URL @"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=false"
@@ -246,29 +248,40 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)sendGeneratedPDFFileByEmail
-{
-    NSData *pdfData = [PDFGenerator dataForPDFFileWithName:@"file.pdf"];
-    
-    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
-    [mailComposer setMessageBody:@"" isHTML:NO];
-    [mailComposer setSubject:@"Email subject"];
-    [mailComposer addAttachmentData:pdfData mimeType:@"text/x-pdf" fileName:@"file.pdf"];
-    
-    mailComposer.mailComposeDelegate = self;
-    [self presentModalViewController:mailComposer animated:YES];
-    [mailComposer release];
-}
-
 - (void)generatePDFFile
 {    
     self.optionsButton.hidden = YES;
-    [PDFGenerator createPDFfromUIView:self.view andImages:self.form.attachedPhotoNames saveToDocumentsWithFileName:@"file.pdf" showAlert:YES];
-    self.optionsButton.hidden = NO;
     
-    [self sendGeneratedPDFFileByEmail];
+    [PDFGenerator createPDFfromUIView:self.view andImages:nil saveToDocumentsWithFileName:@"form.pdf" showAlert:NO];
+    [ImageUtils saveFormImages:self.form.attachedPhotoNames];
+    [self createZip];
+    [ImageUtils deleteFormImages];
+    [FormUploaderManager run];
+    
+    self.optionsButton.hidden = NO;
 }
 
+- (void)createZip
+{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *zipFileName = [NSString stringWithFormat:@"%@_%@.zip", [FormRepository getDriverId], self.form.reference];
+    zipFileName = [documentsDirectory stringByAppendingPathComponent:zipFileName];
+    
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    [zip CreateZipFile2:zipFileName];
+    
+    NSArray *files = [ImageUtils getFormImagesPaths];
+    for(NSString *path in files) {
+        [zip addFileToZip:path newname:[path lastPathComponent]];
+    }
+    
+    NSString *pdfPath = [documentsDirectory stringByAppendingPathComponent:@"form.pdf"];
+    [zip addFileToZip:pdfPath newname:@"form.pdf"];
+    
+    BOOL success = [zip CloseZipFile2];
+    NSLog(@"Zipped file with result %d", success);
+}
+     
 - (void)attachPhoto
 {    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -765,13 +778,6 @@
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [ImageUtils saveImageInDocuments:image withName:imageName];
-}
-
-#pragma mark - MFMailComposeViewControllerDelegate methods
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    [controller dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - NSURLConnectionDelegate methods

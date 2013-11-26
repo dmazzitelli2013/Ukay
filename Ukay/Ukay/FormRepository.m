@@ -36,6 +36,11 @@ NSString *_driverId = nil;
     _driverId = [driverId retain];
 }
 
++ (NSString *)getDriverId
+{
+    return _driverId;
+}
+
 - (void)dealloc
 {
     if(_serverConnectionManager) {

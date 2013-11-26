@@ -12,7 +12,7 @@
 #import "BaseViewController.h"
 #import "Form.h"
 
-@interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate, NSURLConnectionDelegate>
+@interface FormViewController : BaseViewController <UITextViewDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NSURLConnectionDelegate>
 
 @property (nonatomic, retain) Form *form;
 

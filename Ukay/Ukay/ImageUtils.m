@@ -22,6 +22,18 @@
     return imagesPath;
 }
 
++ (NSString *)formImagesDirectory
+{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *imagesPath = [documentsDirectory stringByAppendingPathComponent:@"form_images"];
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:imagesPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:imagesPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    
+    return imagesPath;
+}
+
 + (void)saveImageInDocuments:(UIImage *)image withName:(NSString *)name
 {
     NSString *imagesPath = [self imagesDirectory];    
@@ -82,6 +94,36 @@
     NSString *imagePath = [self imagesDirectory];
     NSString *savedImagePath = [imagePath stringByAppendingPathComponent:name];
     [[NSFileManager defaultManager] removeItemAtPath:savedImagePath error:nil];
+}
+
++ (void)saveFormImages:(NSArray *)images
+{
+    int value = 1;
+    
+    for(NSString *imageName in images) {
+        UIImage *image = [self loadImageNamed:imageName];
+        NSString *imagesPath = [self formImagesDirectory];
+        NSString *savedImagePath = [imagesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpg", value]];
+        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+        [imageData writeToFile:savedImagePath atomically:NO];
+        value++;
+    }
+}
+
++ (NSArray *)getFormImagesPaths
+{
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self formImagesDirectory] error:nil];
+    NSMutableArray *filePaths = [NSMutableArray array];
+    for(NSString *file in files) {
+        [filePaths addObject:[[self formImagesDirectory] stringByAppendingPathComponent:file]];
+    }
+    
+    return filePaths;
+}
+
++ (void)deleteFormImages
+{
+    [[NSFileManager defaultManager] removeItemAtPath:[self formImagesDirectory] error:nil];
 }
 
 @end

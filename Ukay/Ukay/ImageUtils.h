@@ -14,5 +14,8 @@
 + (UIImage *)loadImageNamed:(NSString *)name;
 + (UIImage *)thumbnailForImageName:(NSString *)name;
 + (void)deleteImageFromDocuments:(NSString *)name;
++ (void)saveFormImages:(NSArray *)images;
++ (NSArray *)getFormImagesPaths;
++ (void)deleteFormImages;
 
 @end

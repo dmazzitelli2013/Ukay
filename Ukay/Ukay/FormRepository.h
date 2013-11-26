@@ -12,6 +12,7 @@
 @interface FormRepository : NSObject <ServerConnectionManagerDelegate>
 
 + (void)setDriverId:(NSString *)driverId;
++ (NSString *)getDriverId;
 - (NSArray *)getAllForms;
 - (NSArray *)getAllFormGroupsForForms:(NSArray *)forms;
 - (NSArray *)getAllFormGroupsForToday;

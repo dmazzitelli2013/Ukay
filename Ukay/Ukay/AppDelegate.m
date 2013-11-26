@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "ManifestViewController.h"
+#import "FormUploaderManager.h"
 
 @implementation AppDelegate
 
@@ -39,6 +40,9 @@ static AppDelegate *_instance;
     self.viewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    [FormUploaderManager start];
+    
     return YES;
 }
 
