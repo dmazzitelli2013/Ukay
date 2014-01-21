@@ -18,6 +18,8 @@
 
 @interface ServerConnectionManager : NSObject
 
+@property (nonatomic, assign) id<ServerConnectionManagerDelegate> delegate;
+
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password andPushToken:(NSString *)pushToken withDelegate:(id<ServerConnectionManagerDelegate>)delegate;
 - (void)fetchCSVForDriverId:(NSString *)driverId andDate:(NSDate *)date withDelegate:(id<ServerConnectionManagerDelegate>)delegate;
 - (void)uploadBase64File:(NSString *)base64File withFilename:(NSString *)filename withDelegate:(id<ServerConnectionManagerDelegate>)delegate;

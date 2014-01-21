@@ -45,6 +45,7 @@ NSString *_driverId = nil;
 {
     if(_serverConnectionManager) {
         [_serverConnectionManager release];
+        _serverConnectionManager.delegate = nil;
     }
     
     if(_csv) {

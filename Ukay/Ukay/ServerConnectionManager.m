@@ -22,11 +22,11 @@
     NSMutableData *_data;
 }
 
-@property (nonatomic, assign) id<ServerConnectionManagerDelegate> delegate;
-
 @end
 
 @implementation ServerConnectionManager
+
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
